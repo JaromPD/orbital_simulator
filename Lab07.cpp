@@ -15,7 +15,41 @@
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
 #include "position.h"      // for POINT
+#include <cmath>       // For atan2
 using namespace std;
+
+int RADIUS_OF_EARTH = 6378000;
+
+double getGravity(double h) {
+    double g = 9.80665;
+    int r = RADIUS_OF_EARTH;
+    return g * pow((r / (r + h)), 2);
+}
+
+double getHeightAboveEarth(double x, double y)
+{
+    int r = RADIUS_OF_EARTH;
+
+    return(sqrt((pow(x, 2) + pow(y, 2)) - r));
+}
+
+double getDirectionGravity(double xs, double ys)
+{
+    int xe = 0;
+    int ye = 0;
+
+    return(atan2((xe - xs), (ye - ys)));
+}
+
+double getHorizontalAcceleration( double a, double angle)
+{
+    return (a * sin(angle));
+}
+
+double getVerticalAcceleration(double a, double angle)
+{
+    return (a * cos(angle));
+}
 
 /*************************************************************************
  * Demo
@@ -27,26 +61,47 @@ public:
    Demo(Position ptUpperRight) :
       ptUpperRight(ptUpperRight)
    {
-      ptHubble.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptHubble.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptHubble.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptHubble.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptSputnik.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptSputnik.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptSputnik.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptSputnik.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptStarlink.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptStarlink.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptStarlink.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptStarlink.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptCrewDragon.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptCrewDragon.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptCrewDragon.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptCrewDragon.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptShip.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptShip.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptShip.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptShip.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      ptGPS.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptGPS.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      //ptGPS.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+      //ptGPS.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
       ptStar.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
       ptStar.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+
+      // Start the sputnik calculations for GEO.
+
+      // Set initial POS
+      ptSputnik.setMetersX(0);
+      ptSputnik.setMetersY(42164000);
+
+      // Set initial VEL
+      double xInitialVelSputnik = -3100;
+      double yInitialVelSputnik = 0;
+
+      // Add gravity for Sputnik
+      double heightSputnik = getHeightAboveEarth(ptSputnik.getMetersX(), ptSputnik.getMetersY());
+      double gravSputnik = getGravity(heightSputnik);
+      double gravDirectionSputnik = getDirectionGravity(ptSputnik.getMetersX(), ptSputnik.getMetersY());
+      double xAccelSputnik = getHorizontalAcceleration(gravSputnik, gravDirectionSputnik);
+      double yAccelSputnik = getVerticalAcceleration(gravSputnik, gravDirectionSputnik);
+      xInitialVelSputnik += xAccelSputnik;
+      yInitialVelSputnik += yAccelSputnik;
+
+      // END Sputnik GEO calculations.
 
       angleShip = 0.0;
       angleEarth = 0.0;
