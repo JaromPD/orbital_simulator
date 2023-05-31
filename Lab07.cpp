@@ -11,28 +11,105 @@
  *      ??
  *****************************************************************/
 
+#define _USE_MATH_DEFINES
 #include <cassert>      // for ASSERT
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
 #include "position.h"      // for POINT
+#include <cassert>
 #include <cmath>       // For atan2
 using namespace std;
 
 int RADIUS_OF_EARTH = 6378000;
+double ROTATIONS_PER_FRAME = 1 / 1800;
+int SECONDS_PER_FRAME = 48;
+int GEO_DISTANCE = 42164000;
+int GEO_SPEED = 3100;
+int ANGLE_DEGREES = 30;
+double ANGLE_RADIANS = 0.524;
+int RADIUS_EARTH = 6378000;
 
+double GRAVITY_EARTH = -9.8067;
+
+/**********************************************************************************
+ * GET ANGLE RADIANS
+ * 
+ * angle_degrees = angle in degrees
+**********************************************************************************/
+
+double getAngleRadians(double angle_degrees)
+{
+    return (angle_degrees * M_PI / 180);
+}
+
+
+/**********************************************************************************
+ * GET ANGLE DEGREES
+ * 
+ * angle_radians = angle in radians
+**********************************************************************************/
+double getAngleDegrees(double angle_radians)
+{
+	return (angle_radians * 180 / M_PI);
+}
+
+/**********************************************************************************
+ * GET X COMPONENT
+ * 
+ * totalComponent = total component of the vector
+**********************************************************************************/
+double getXComponent(double totalComponent, double angleDegrees)
+{
+    return (totalComponent * cos(getAngleRadians(angleDegrees)));
+}
+
+/**********************************************************************************
+ * GET Y COMPONENT
+ * 
+ * totalComponent = total component of the vector
+**********************************************************************************/
+double getYComponent(double totalComponent, double angleDegrees)
+{
+    return (totalComponent * sin(getAngleRadians(angleDegrees)));
+}
+
+/**********************************************************************************
+ * GET GRAVITY
+ * 
+ * h = height above the earth in meters
+ * g = gravity
+ * r = radius of the earth: 6,378,000 m
+**********************************************************************************/
 double getGravity(double h) {
-    double g = 9.80665;
-    int r = RADIUS_OF_EARTH;
+    double g = GRAVITY_EARTH;
+    int r = RADIUS_EARTH;
     return g * pow((r / (r + h)), 2);
 }
 
+/**********************************************************************************
+ * GET HEIGHT ABOVE EARTH
+ * 
+ * h = height above the earth in meters
+ * x = horizontal position of the satellite where the center of the earth is 0
+ * y = vertical position of the satellite where the center of the earth is 0
+ * r = radius of the earth: 6,378,000 m
+**********************************************************************************/
 double getHeightAboveEarth(double x, double y)
 {
-    int r = RADIUS_OF_EARTH;
+    int r = RADIUS_EARTH;
 
-    return(sqrt((pow(x, 2) + pow(y, 2)) - r));
+    return(sqrt(pow(x, 2) + pow(y, 2)) - r);
 }
 
+/**********************************************************************************
+ * GET DIRECTION GRAVITY
+ * 	
+ * d = direction of the pull of gravity, in radians
+ * xe = horizontal position of the center of the earth: 0 m
+ * ye = vertical position of the center of the earth: 0 m
+ * xs = horizontal position of the satellite in meters
+ * ys = vertical position of the satellite in meters
+**********************************************************************************/
 double getDirectionGravity(double xs, double ys)
 {
     int xe = 0;
@@ -41,15 +118,31 @@ double getDirectionGravity(double xs, double ys)
     return(atan2((xe - xs), (ye - ys)));
 }
 
+/**********************************************************************************
+ * GET HORIZONTAL ACCELERATION
+ * 
+ * ddx = horizontal component of acceleration
+ * a = total acceleration
+ * angle = angle (0° is up) of the direction of acceleration
+**********************************************************************************/
 double getHorizontalAcceleration( double a, double angle)
 {
     return (a * sin(angle));
 }
 
+/**********************************************************************************
+ * GET VERTICAL ACCELERATION
+ *
+ * ddy = horizontal component of acceleration
+ * a = total acceleration
+ * angle = angle (0° is up) of the direction of acceleration
+**********************************************************************************/
 double getVerticalAcceleration(double a, double angle)
 {
     return (a * cos(angle));
 }
+
+
 
 /*************************************************************************
  * Demo
@@ -85,23 +178,10 @@ public:
       // Start the sputnik calculations for GEO.
 
       // Set initial POS
-      ptSputnik.setMetersX(0);
-      ptSputnik.setMetersY(42164000);
-
-      // Set initial VEL
-      double xInitialVelSputnik = -3100;
-      double yInitialVelSputnik = 0;
-
-      // Add gravity for Sputnik
-      double heightSputnik = getHeightAboveEarth(ptSputnik.getMetersX(), ptSputnik.getMetersY());
-      double gravSputnik = getGravity(heightSputnik);
-      double gravDirectionSputnik = getDirectionGravity(ptSputnik.getMetersX(), ptSputnik.getMetersY());
-      double xAccelSputnik = getHorizontalAcceleration(gravSputnik, gravDirectionSputnik);
-      double yAccelSputnik = getVerticalAcceleration(gravSputnik, gravDirectionSputnik);
-      xInitialVelSputnik += xAccelSputnik;
-      yInitialVelSputnik += yAccelSputnik;
-
-      // END Sputnik GEO calculations.
+      ptGPS.setMetersX(getXComponent(GEO_DISTANCE, ANGLE_DEGREES));
+      cout << "X: " << ptGPS.getMetersX() << endl;
+      ptGPS.setMetersY(getYComponent(GEO_DISTANCE, ANGLE_DEGREES));
+      cout << "Y: " << ptGPS.getMetersY() << endl;
 
       angleShip = 0.0;
       angleEarth = 0.0;
@@ -154,6 +234,45 @@ void callBack(const Interface* pUI, void* p)
    //
    // perform all the game logic
    //
+
+   Position *ptGPS = &pDemo->ptGPS;
+
+   // Calculate the height
+   //  1:36 - 3:36
+
+   double gpsHeight = getHeightAboveEarth(ptGPS->getMetersX(), ptGPS->getMetersY());
+   cout << "GPS Height: " << gpsHeight << endl;
+   assert(gpsHeight + RADIUS_EARTH == GEO_DISTANCE); // This should always be true.
+
+   // Calculate the acceleration
+   // 3:39 - 5:44
+
+   double gpsCurrGravity = getGravity(gpsHeight);
+   cout << "GPS Gravity: " << gpsCurrGravity << endl;
+
+   double gpsCurrGravityDDY = getVerticalAcceleration(gpsCurrGravity, ANGLE_RADIANS);
+   cout << "GPS Gravity DDY: " << gpsCurrGravityDDY << endl;
+   double gpsCurrGravityDDX = getHorizontalAcceleration(gpsCurrGravity, ANGLE_RADIANS);
+   cout << "GPS Gravity DDX: " << gpsCurrGravityDDX << endl;
+
+   // Calculate the velocity
+   // 5:50 - 
+
+   double gpsCurrVelocityDY = -1 * getYComponent(GEO_SPEED, ANGLE_DEGREES);
+   cout << "GPS Velocity DY: " << gpsCurrVelocityDY << endl;
+   double gpsCurrVelocityDX = getXComponent(GEO_SPEED, ANGLE_DEGREES);
+   cout << "GPS Velocity DX: " << gpsCurrVelocityDX << endl;
+
+   double gpsNewVelocityDY = (gpsCurrVelocityDY + (gpsCurrGravityDDY * SECONDS_PER_FRAME));
+   cout << "GPS New Velocity DY: " << gpsNewVelocityDY << endl;
+   double gpsNewVelocityDX = (gpsCurrVelocityDX + (gpsCurrGravityDDX * SECONDS_PER_FRAME));
+   cout << "GPS New Velocity DX: " << gpsNewVelocityDX << endl;
+
+   double newX = ptGPS->getMetersX() + (gpsNewVelocityDX * SECONDS_PER_FRAME) * (0.5 * gpsCurrGravityDDX * pow(SECONDS_PER_FRAME, 2));
+   double newY = ptGPS->getMetersY() + (gpsNewVelocityDY * SECONDS_PER_FRAME) * (0.5 * gpsCurrGravityDDY * pow(SECONDS_PER_FRAME, 2));
+
+   ptGPS->setMetersX(newX);
+   ptGPS->setMetersY(newY);
 
    // rotate the earth
    pDemo->angleEarth += 0.01;
