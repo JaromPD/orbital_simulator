@@ -22,7 +22,7 @@ using namespace std;
 
 int RADIUS_OF_EARTH = 6378000;
 double ROTATIONS_PER_FRAME = 1 / 1800;
-int SECONDS_PER_FRAME = 48;
+int SECONDS_PER_FRAME = 12; // Should be 48
 int GEO_DISTANCE = 42164000;
 int GEO_SPEED = 3100;
 int ANGLE_DEGREES = 30;
@@ -178,10 +178,22 @@ public:
       // Start the sputnik calculations for GEO.
 
       // Set initial POS
-      ptGPS.setMetersX(getXComponent(GEO_DISTANCE, ANGLE_DEGREES));
+      ptGPS.setMetersX(getYComponent(GEO_DISTANCE, ANGLE_DEGREES));
       cout << "X: " << ptGPS.getMetersX() << endl;
-      ptGPS.setMetersY(getYComponent(GEO_DISTANCE, ANGLE_DEGREES));
+      ptGPS.setMetersY(getXComponent(GEO_DISTANCE, ANGLE_DEGREES));
       cout << "Y: " << ptGPS.getMetersY() << endl;
+      /*
+      struct DxDy {
+          double dx;
+          double dy;
+      } GPSDxDy;
+
+      GPSDxDy.dx = getXComponent(GEO_SPEED, getAngleDegrees(ANGLE_RADIANS));
+      GPSDxDy.dy = getYComponent(GEO_SPEED, getAngleDegrees(ANGLE_RADIANS));
+
+      cout << "dx: " << GPSDxDy.dx << endl;
+      cout << "dy: " << GPSDxDy.dy << endl;
+      */
 
       angleShip = 0.0;
       angleEarth = 0.0;
@@ -236,31 +248,35 @@ void callBack(const Interface* pUI, void* p)
    //
 
    Position *ptGPS = &pDemo->ptGPS;
+   //double initialDX = &pDemo->GPSDxDy.dx;
+   //double initialDY = &pDemo->GPSDxDy.dy;
 
    // Calculate the height
    //  1:36 - 3:36
 
    double gpsHeight = getHeightAboveEarth(ptGPS->getMetersX(), ptGPS->getMetersY());
    cout << "GPS Height: " << gpsHeight << endl;
-   assert(gpsHeight + RADIUS_EARTH == GEO_DISTANCE); // This should always be true.
-
+   //assert(gpsHeight + RADIUS_EARTH == GEO_DISTANCE); // This should always be true.
+   cout << "Similarity: " << (gpsHeight + RADIUS_EARTH) - GEO_DISTANCE << endl;
    // Calculate the acceleration
    // 3:39 - 5:44
 
    double gpsCurrGravity = getGravity(gpsHeight);
    cout << "GPS Gravity: " << gpsCurrGravity << endl;
 
-   double gpsCurrGravityDDY = getVerticalAcceleration(gpsCurrGravity, ANGLE_RADIANS);
+   double currDirectionGravity = getDirectionGravity(ptGPS->getMetersX(), ptGPS->getMetersY());
+
+   double gpsCurrGravityDDY = getVerticalAcceleration(gpsCurrGravity, (currDirectionGravity));
    cout << "GPS Gravity DDY: " << gpsCurrGravityDDY << endl;
-   double gpsCurrGravityDDX = getHorizontalAcceleration(gpsCurrGravity, ANGLE_RADIANS);
+   double gpsCurrGravityDDX = getHorizontalAcceleration(gpsCurrGravity, currDirectionGravity);
    cout << "GPS Gravity DDX: " << gpsCurrGravityDDX << endl;
 
    // Calculate the velocity
    // 5:50 - 
 
-   double gpsCurrVelocityDY = -1 * getYComponent(GEO_SPEED, ANGLE_DEGREES);
+   double gpsCurrVelocityDY = getYComponent(GEO_SPEED, getAngleDegrees(currDirectionGravity));
    cout << "GPS Velocity DY: " << gpsCurrVelocityDY << endl;
-   double gpsCurrVelocityDX = getXComponent(GEO_SPEED, ANGLE_DEGREES);
+   double gpsCurrVelocityDX = getXComponent(GEO_SPEED, getAngleDegrees(currDirectionGravity));
    cout << "GPS Velocity DX: " << gpsCurrVelocityDX << endl;
 
    double gpsNewVelocityDY = (gpsCurrVelocityDY + (gpsCurrGravityDDY * SECONDS_PER_FRAME));
@@ -273,6 +289,9 @@ void callBack(const Interface* pUI, void* p)
 
    ptGPS->setMetersX(newX);
    ptGPS->setMetersY(newY);
+   cout << "GPS New X: " << ptGPS->getMetersX() << endl;
+   cout << "GPS New Y: " << ptGPS->getMetersY() << endl;
+  
 
    // rotate the earth
    pDemo->angleEarth += 0.01;
