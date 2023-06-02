@@ -87,7 +87,7 @@ double getYComponent(double totalComponent, double angleDegrees)
 double getGravity(double h) {
     double g = GRAVITY_EARTH;
     int r = RADIUS_EARTH;
-    return g * pow((r / (r + h)), 2);
+    return g * ( (r / (r + h)) * (r / (r + h)));
 }
 
 /**********************************************************************************
@@ -102,7 +102,7 @@ double getHeightAboveEarth(double x, double y)
 {
     int r = RADIUS_EARTH;
 
-    return(sqrt(pow(x, 2) + pow(y, 2)) - r);
+    return(sqrt((x * x) + (y * y)) - r);
 }
 
 /**********************************************************************************
@@ -288,8 +288,8 @@ void callBack(const Interface* pUI, void* p)
    DxDyGPS->dx = gpsNewVelocityDX;
    cout << "GPS New Velocity DX: " << gpsNewVelocityDX << endl;
 
-   double newX = ptGPS->getMetersX() + (gpsNewVelocityDX * SECONDS_PER_FRAME) + (0.5 * gpsCurrGravityDDX * pow(SECONDS_PER_FRAME, 2));
-   double newY = ptGPS->getMetersY() + (gpsNewVelocityDY * SECONDS_PER_FRAME) + (0.5 * gpsCurrGravityDDY * pow(SECONDS_PER_FRAME, 2));
+   double newX = ptGPS->getMetersX() + (gpsNewVelocityDX * SECONDS_PER_FRAME) + (0.5 * gpsCurrGravityDDX * (SECONDS_PER_FRAME * SECONDS_PER_FRAME ));
+   double newY = ptGPS->getMetersY() + (gpsNewVelocityDY * SECONDS_PER_FRAME) + (0.5 * gpsCurrGravityDDY * (SECONDS_PER_FRAME * SECONDS_PER_FRAME));
 
    ptGPS->setMetersX(newX);
    ptGPS->setMetersY(newY);
