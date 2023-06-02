@@ -256,7 +256,6 @@ void callBack(const Interface* pUI, void* p)
 
    double gpsHeight = getHeightAboveEarth(ptGPS->getMetersX(), ptGPS->getMetersY());
    cout << "GPS Height: " << gpsHeight << endl;
-   //assert(gpsHeight + RADIUS_EARTH == GEO_DISTANCE); // This should always be true.
    cout << "Similarity: " << (gpsHeight + RADIUS_EARTH) - GEO_DISTANCE << endl;
    // Calculate the acceleration
    // 3:39 - 5:44
@@ -267,8 +266,8 @@ void callBack(const Interface* pUI, void* p)
    double currDirectionGravity = getDirectionGravity(ptGPS->getMetersX(), ptGPS->getMetersY());
    cout << "GPS Gravity Direction: " << currDirectionGravity << endl;
 
-   double gpsCurrGravityDDX = getVerticalAcceleration(gpsCurrGravity, currDirectionGravity);
-   double gpsCurrGravityDDY = getHorizontalAcceleration(gpsCurrGravity, currDirectionGravity);
+   double gpsCurrGravityDDY = -getVerticalAcceleration(gpsCurrGravity, currDirectionGravity);
+   double gpsCurrGravityDDX = -getHorizontalAcceleration(gpsCurrGravity, currDirectionGravity);
    cout << "GPS Gravity DDX: " << gpsCurrGravityDDX << endl;
    cout << "GPS Gravity DDY: " << gpsCurrGravityDDY << endl;
 
