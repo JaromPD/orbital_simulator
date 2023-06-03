@@ -182,8 +182,6 @@ public:
       ptStar.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
       ptStar.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
 
-      // Start the sputnik calculations for GEO.
-
       // Set initial POS
       ptGPS.setMetersX(getYComponent(GEO_DISTANCE, ANGLE_DEGREES));
       cout << "X: " << ptGPS.getMetersX() << endl;
@@ -248,8 +246,6 @@ void callBack(const Interface* pUI, void* p)
 
    Position *ptGPS = &pDemo->ptGPS;
    DxDy *DxDyGPS = &pDemo->DxDyGPS;
-   //double initialDX = &pDemo->GPSDxDy.dx;
-   //double initialDY = &pDemo->GPSDxDy.dy;
 
    // Calculate the height
    //  1:36 - 3:36
@@ -274,10 +270,8 @@ void callBack(const Interface* pUI, void* p)
    // Calculate the velocity
    // 5:50 - 
 
-   //double gpsCurrVelocityDY = getYComponent(GEO_SPEED, getAngleDegrees(currDirectionGravity));
    double gpsCurrVelocityDY = DxDyGPS->dy;
    cout << "GPS Velocity DY: " << gpsCurrVelocityDY << endl;
-   //double gpsCurrVelocityDX = getXComponent(GEO_SPEED, getAngleDegrees(currDirectionGravity));
    double gpsCurrVelocityDX = DxDyGPS->dx;
    cout << "GPS Velocity DX: " << gpsCurrVelocityDX << endl;
 
@@ -298,7 +292,6 @@ void callBack(const Interface* pUI, void* p)
   
 
    // rotate the earth
-   //pDemo->angleEarth += 0.01;
    pDemo->angleEarth += -(((2 * M_PI) / FRAME_RATE) * (1440 / SECONDS_PER_DAY));
    cout << -(((2*M_PI) / FRAME_RATE) * (1440 / SECONDS_PER_DAY)) << endl;
    cout << "Earth Angle: " << pDemo->angleEarth << endl;
