@@ -6,6 +6,8 @@
 #include <list>
 #include <cassert>
 
+#define M_PI 3.14159265358979323846
+
 using namespace std;
 
 class TestShip
@@ -184,6 +186,9 @@ private:
 		// Teardown
 	}
 
+	/******************************
+	TestDraw is a work in progress.
+	******************************/
 	void testDraw()
 	{
 		// Setup
@@ -456,6 +461,77 @@ private:
 		assert(ship.pos.x == 0);
 		assert(ship.pos.y == 0);
 		assert(ship.angle.radians == 0.1);
+		// Teardown
+	}
+
+	void testFireStationary()
+	{
+		// Setup
+		Velocity velocity(0, 0);
+		Position pos(0, 0);
+		Angle ang(0);
+		float angularVelocity = 0;
+		Ship ship(velocity, pos, ang, angularVelocity);
+		// Exercise
+		Projectile* projectile = ship.fire();
+		// Verify
+		assert(projectile->velocity.dx == 9000);
+		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
+		assert(projectile->pos.x == 19);
+		assert(projectile->pos.x == (ship.pos.x + 19));
+		// Teardown
+	}
+
+	void testFireSameDirection()
+	{
+	// Setup
+		Velocity velocity(1, 0);
+		Position pos(1, 0);
+		Angle ang(0);
+		float angularVelocity = 0;
+		Ship ship(velocity, pos, ang, angularVelocity);
+		// Exercise
+		Projectile* projectile = ship.fire();
+		// Verify
+		assert(projectile->velocity.dx == 9001);
+		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
+		assert(projectile->pos.x == 20);
+		assert(projectile->pos.x == (ship.pos.x + 19));
+		// Teardown
+	}
+
+	void testFireOppositeDirection()
+	{
+	// Setup
+		Velocity velocity(-1, 0);
+		Position pos(-1, 0);
+		Angle ang(0);
+		float angularVelocity = 0;
+		Ship ship(velocity, pos, ang, angularVelocity);
+		// Exercise
+		Projectile* projectile = ship.fire();
+		// Verify
+		assert(projectile->velocity.dx == 8999);
+		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
+		assert(projectile->pos.x == 18);
+		assert(projectile->pos.x == (ship.pos.x + 19));
+		// Teardown
+	}
+
+	void testFireAngledDirection()
+	{
+	// Setup
+		Velocity velocity(0, 0);
+		Position pos(1, 1);
+		Angle ang(M_PI / 4);
+		float angularVelocity = 0;
+		Ship ship(velocity, pos, ang, angularVelocity);
+		// Exercise
+		Projectile* projectile = ship.fire();
+		// Verify
+		assert(projectile->velocity.dx == 6363.96); // Roughly
+		assert(projectile->velocity.dy == 6363.96); // Roughly
+		// Need to find out how it finds 19 pixels away when it's angled.
 		// Teardown
 	}
 

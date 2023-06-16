@@ -2,6 +2,9 @@
 #include "whole.h"
 #include "uiDraw.h"
 #include "position.h"
+#include "velocity.h"
+#include "angle.h"
+#include "projectile.h"
 
 class Ship :
     public Whole
@@ -22,6 +25,7 @@ public:
 	void rotateLeft() {};
 	void rotateRight() {};
 	void setThrust(bool thrust) { this->thrust = thrust; };
+	Projectile* fire() {};
 
 private:
 	bool thrust;

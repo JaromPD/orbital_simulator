@@ -51,6 +51,9 @@
     <ClCompile Include="test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uiDraw.h">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="testPosition.h">
       <Filter>Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="projectile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
