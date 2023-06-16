@@ -37,8 +37,12 @@ public:
 		moveUpRight();
 		moveDownLeft();
 		moveDownRight();
-		testRotateLeft();
-		testRotateRight();
+		moveRotateLeft();
+		moveRotateRight();
+		testFireStationary();
+		testFireSameDirection();
+		testFireOppositeDirection();
+		testFireAngledDirection();
 	}
 
 private:
