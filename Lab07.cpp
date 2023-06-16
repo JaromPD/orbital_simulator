@@ -16,6 +16,7 @@
 #include <cassert>      // for ASSERT
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
+#include"test.h"
 #include "position.h"      // for POINT
 #include <cassert>
 #include <cmath>       // For atan2
@@ -343,6 +344,8 @@ int WINAPI wWinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
+    testRunner();
+
    // Initialize OpenGL
    Position ptUpperRight;
    ptUpperRight.setZoom(128000.0 /* 128km equals 1 pixel */);

@@ -1,4 +1,6 @@
 #pragma once
+#include "angle.h"
+
 class TestShip;
 
 class Velocity
@@ -6,20 +8,24 @@ class Velocity
 public:
 	friend TestShip;
 
-	Velocity();
+	Velocity() : dx(0), dy(0)
+	{
+		setDx(dx);
+		setDy(dy);
+	}
 	Velocity(float dx, float dy);
 	
 	void assign(float velocity);
-	float getDx() const;
-	float getDy() const;
+	float getDx() const { return dx; };
+	float getDy() const { return dy; };
 	float getSpeed() const;
 	Angle getAngle() const;
-	void setDx(float dx);
-	void setDy(float dy);
+	void setDx(float dx) { this->dx = dx; };
+	void setDy(float dy) { this->dy = dy; };
 	void setSpeed(float speed);
 	void setAngle(Angle angle);
-	void addDx(float dx);
-	void addDy(float dy);
+	void addDx(float dx) { this->dx += dx; };
+	void addDy(float dy) { this->dy += dy; };
 	void add(Velocity velocity);
 private:
 	float dx;
