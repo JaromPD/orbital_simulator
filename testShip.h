@@ -46,6 +46,11 @@ public:
 	}
 
 private:
+	bool approximatelyEqual(float val1, float val2)
+	{
+		return(abs(val1 - val2) < 0.0001);
+	}
+
 	void defaultConstructor() const
 	{
 		// Setup
@@ -533,8 +538,8 @@ private:
 		// Exercise
 		Projectile* projectile = ship.fire();
 		// Verify
-		assert(projectile->velocity.dx == 6363.96); // Roughly
-		assert(projectile->velocity.dy == 6363.96); // Roughly
+		assert(approximatelyEqual(projectile->velocity.dx, 6363.96)); // Roughly
+		assert(approximatelyEqual(projectile->velocity.dy, 6363.96)); // Roughly
 		// Need to find out how it finds 19 pixels away when it's angled.
 		// Teardown
 	}
