@@ -15,7 +15,7 @@ Description: This file contains the test cases for the oribtal program.
  ****************************************************************/
 void testRunner()
 {
-   TestPosition().run();
-   TestShip().run();
-   TestAngle().run();
+	TestAngle().run();
+	TestPosition().run();
+	TestShip().run();
 }

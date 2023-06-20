@@ -1,4 +1,6 @@
 #pragma once
+#define _USE_MATH_DEFINES
+#include <math.h>
 class TestShip;
 class Test;
 
@@ -11,8 +13,8 @@ public:
 	Angle() : radians(0.00) {};
 	Angle(float radians);
 
-	void setRadians(float radians);
-	void setDegrees(float degrees);
+	void setRadians(float radians) { this->radians = radians; };
+	void setDegrees(float degrees) {};
 	void setDxDy(float dx, float dy);
 	void setUp() {};
 	void setDown() {};
@@ -23,6 +25,9 @@ public:
 	float getRadians() const { return radians; };
 	float getDx() const { return 0.00; };
 	float getDy() const { return 0.00; };
+
+	float convertRadiansToDegrees(float radians) const { return(radians * (180 / M_PI)); };
+	float convertDegreesToRadians(float degrees) const { return 0.00; };
 private:
 	float radians;
 };
