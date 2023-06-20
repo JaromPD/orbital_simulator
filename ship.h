@@ -25,7 +25,7 @@ public:
 	void rotateLeft() {};
 	void rotateRight() {};
 	void setThrust(bool thrust) { this->thrust = thrust; };
-	Projectile* fire() {};
+	Projectile* fire() { Projectile* stubProj = new Projectile() ; return stubProj; };
 
 private:
 	bool thrust;

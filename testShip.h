@@ -1,3 +1,9 @@
+/*********************************************************************
+Written By: Jarom Diaz
+Last Modified: 06/17/2023
+Description: This file contains the test cases for the ship class.
+*********************************************************************/
+
 #include "ship.h"
 #include "velocity.h"
 #include "position.h"

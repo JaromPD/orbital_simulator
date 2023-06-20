@@ -1,15 +1,13 @@
-/***********************************************************************
- * Source File:
- *    Test : Test runner
- * Author:
- *    Br. Helfrich
- * Summary:
- *    The test runner for all the unit tests
- ************************************************************************/
+/*********************************************************************
+Written By: Jarom Diaz
+Last Modified: 06/17/2023
+Description: This file contains the test cases for the oribtal program.
+*********************************************************************/
 
 #include "test.h"
 #include "testPosition.h"
 #include "testShip.h"
+#include "testAngle.h"
 
 /*****************************************************************
  * TEST RUNNER
@@ -19,4 +17,5 @@ void testRunner()
 {
    TestPosition().run();
    TestShip().run();
+   TestAngle().run();
 }

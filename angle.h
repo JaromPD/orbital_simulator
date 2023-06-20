@@ -1,10 +1,12 @@
 #pragma once
 class TestShip;
+class Test;
 
 class Angle
 {
 public:
-	friend TestShip;
+	friend class TestShip;
+	friend class TestAngle;
 
 	Angle() : radians(0.00) {};
 	Angle(float radians);
@@ -17,10 +19,10 @@ public:
 	void setLeft() {};
 	void setRight() {};
 	void rotate(float radians) {};
-	float getDegrees() const {};
+	float getDegrees() const { return 0.00; };
 	float getRadians() const { return radians; };
-	float getDx() const {};
-	float getDy() const {};
+	float getDx() const { return 0.00; };
+	float getDy() const { return 0.00; };
 private:
 	float radians;
 };

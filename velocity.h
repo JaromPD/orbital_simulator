@@ -2,11 +2,13 @@
 #include "angle.h"
 
 class TestShip;
+class TestVelocity;
 
 class Velocity
 {
 public:
-	friend TestShip;
+	friend class TestShip; 
+	friend class TestVelocity;
 
 	Velocity() : dx(0), dy(0)
 	{
@@ -27,6 +29,7 @@ public:
 	void addDx(float dx) { this->dx += dx; };
 	void addDy(float dy) { this->dy += dy; };
 	void add(Velocity velocity);
+
 private:
 	float dx;
 	float dy;

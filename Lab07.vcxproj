@@ -159,6 +159,7 @@
     <ClInclude Include="satellite.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="test.h" />
+    <ClInclude Include="testAngle.h" />
     <ClInclude Include="testPosition.h" />
     <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />
