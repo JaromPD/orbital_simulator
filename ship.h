@@ -14,7 +14,7 @@ public:
 
 	Ship() {}
 	Ship(Velocity vel, Position pos, Angle ang, float angular);
-	void draw(ogstream* gout, bool thrust) const
+	void draw(ogstream* gout, bool thrust)
 	{
 		gout->drawShip(pos, angle.getRadians(), thrust);
 	}

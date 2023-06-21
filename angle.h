@@ -11,24 +11,24 @@ public:
 	friend class TestAngle;
 
 	Angle() : radians(0.00) {};
-	Angle(float radians);
+	Angle(float radians) { this->radians = radians; };
 
-	void setRadians(float radians) { this->radians = radians; };
-	void setDegrees(float degrees) {};
+	void setRadians(float radians);
+	void setDegrees(float degrees);
 	void setDxDy(float dx, float dy);
-	void setUp() {};
-	void setDown() {};
-	void setLeft() {};
-	void setRight() {};
-	void rotate(float radians) {};
-	float getDegrees() const { return 0.00; };
-	float getRadians() const { return radians; };
+	void setUp() { this->radians = (M_PI / 2); };
+	void setDown() { this->radians = ((3 * M_PI) / 2); };
+	void setLeft() { this->radians = M_PI; };
+	void setRight() { this->radians = 0; };
+	void rotate(float radians);
+	float getDegrees();
+	float getRadians();
 	float getDx() const { return 0.00; };
 	float getDy() const { return 0.00; };
-
-	float convertRadiansToDegrees(float radians) const { return(radians * (180 / M_PI)); };
-	float convertDegreesToRadians(float degrees) const { return 0.00; };
 private:
+	float convertRadiansToDegrees() const;
+	void normalizeRadians();
+
 	float radians;
 };
 

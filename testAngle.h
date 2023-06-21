@@ -7,7 +7,8 @@ Description: This file contains the test cases for the angle class.
 #pragma once
 #include "angle.h"
 #include <cassert>
-#define M_PI 3.14159265358979323846
+#include <math.h>
+#define _USE_MATH_DEFINES
 
 class TestAngle
 {
@@ -49,9 +50,15 @@ public:
 		rotate3Pi();
 		rotateNegPi();
 		rotateNoPi();
+		cout << "All Angle Tests Passed" << endl;
 	}
 
 private:
+	bool approximatelyEqual(float val1, float val2)
+	{
+		return(abs(val1 - val2) < 0.0001);
+	}
+
 	void defaultConstructor()
 	{
 		// Setup
@@ -80,7 +87,7 @@ private:
 		// Excercise
 		d.setRadians(M_PI);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -91,7 +98,7 @@ private:
 		// Excercise
 		d.setRadians(2 * M_PI);
 		// Verify
-		assert(d.radians == 0);
+		assert(approximatelyEqual(d.radians, 0));
 		// Teardown
 	}
 
@@ -102,7 +109,7 @@ private:
 		// Excercise
 		d.setRadians(3 * M_PI);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -113,7 +120,7 @@ private:
 		// Excercise
 		d.setRadians(-M_PI);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -124,7 +131,7 @@ private:
 		// Excercise
 		d.setDegrees(0);
 		// Verify
-		assert(d.radians == 0);
+		assert(approximatelyEqual(d.radians, 0));
 		// Teardown
 	}
 
@@ -135,7 +142,7 @@ private:
 		// Excercise
 		d.setDegrees(180);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -146,7 +153,7 @@ private:
 		// Excercise
 		d.setDegrees(360);
 		// Verify
-		assert(d.radians == 0);
+		assert(approximatelyEqual(d.radians, 0));
 		// Teardown
 	}
 
@@ -157,7 +164,7 @@ private:
 		// Excercise
 		d.setDegrees(540);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -168,7 +175,7 @@ private:
 		// Excercise
 		d.setDegrees(-180);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -179,7 +186,7 @@ private:
 		// Excercise
 		d.setDxDy(1, 1);
 		// Verify
-		assert(d.radians == M_PI / 4);
+		assert(approximatelyEqual(d.radians, (M_PI / 4)));
 		// Teardown
 	}
 
@@ -190,7 +197,7 @@ private:
 		// Excercise
 		d.setDxDy(-1, -1);
 		// Verify
-		assert(d.radians == (3 * M_PI) / 4);
+		assert(approximatelyEqual(d.radians, ((5 * M_PI) / 4)));
 		// Teardown
 	}
 
@@ -201,7 +208,7 @@ private:
 		// Excercise
 		d.setDxDy(-1, 0);
 		// Verify
-		assert(d.radians == M_PI);
+		assert(approximatelyEqual(d.radians, M_PI));
 		// Teardown
 	}
 
@@ -212,7 +219,7 @@ private:
 		// Excercise
 		d.setDxDy(1, 0);
 		// Verify
-		assert(d.radians == 0);
+		assert(approximatelyEqual(d.radians, 0));
 		// Teardown
 	}
 
@@ -223,7 +230,7 @@ private:
 			// Excercise
 			d.setDxDy(0, 1);
 			// Verify
-			assert(d.radians == M_PI / 2);
+			assert(approximatelyEqual(d.radians, (M_PI / 2)));
 			// Teardown
 		}
 
@@ -234,7 +241,7 @@ private:
 		// Excercise
 		d.setDxDy(0, 1);
 		// Verify
-		assert(d.getDegrees() == 0);
+		assert(approximatelyEqual(d.getDegrees(), 0));
 		// Teardown
 	}
 
@@ -245,7 +252,7 @@ private:
 		d.radians = M_PI;
 		// Excercise
 		// Verify
-		assert(d.getDegrees() == 180);
+		assert(approximatelyEqual(d.getDegrees(), 180));
 		// Teardown
 	}
 
@@ -256,7 +263,7 @@ private:
 		d.radians = 2 * M_PI;
 		// Excercise
 		// Verify
-		assert(d.getDegrees() == 0);
+		assert(approximatelyEqual(d.getDegrees(), 0));
 		// Teardown
 	}
 
@@ -267,7 +274,7 @@ private:
 		d.radians = 3 * M_PI;
 		// Excercise
 		// Verify
-		assert(d.getDegrees() == 180);
+		assert(approximatelyEqual(d.getDegrees(), 180));
 		// Teardown
 	}
 
@@ -278,7 +285,7 @@ private:
 		d.radians = -M_PI;
 		// Excercise
 		// Verify
-		assert(d.getDegrees() == 180);
+		assert(approximatelyEqual(d.getDegrees(), 180));
 		// Teardown
 	}
 
@@ -289,7 +296,7 @@ private:
 		d.radians = 0;
 		// Excercise
 		// Verify
-		assert(d.getRadians() == 0);
+		assert(approximatelyEqual(d.getRadians(), 0));
 		// Teardown
 	}
 
@@ -300,7 +307,7 @@ private:
 		d.radians = M_PI;
 		// Excercise
 		// Verify
-		assert(d.getRadians() == M_PI);
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -311,7 +318,7 @@ private:
 		d.radians = 2 * M_PI;
 		// Excercise
 		// Verify
-		assert(d.getRadians() == 2 * M_PI);
+		assert(approximatelyEqual(d.getRadians(), 0));
 		// Teardown
 	}
 
@@ -322,7 +329,7 @@ private:
 		d.radians = 3 * M_PI;
 		// Excercise
 		// Verify
-		assert(d.getRadians() == 3 * M_PI);
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -333,7 +340,8 @@ private:
 		d.radians = -1 * M_PI;
 		// Excercise
 		// Verify
-		assert(d.getRadians() == -1 * M_PI);
+		cout << d.getRadians() << endl;
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -345,7 +353,7 @@ private:
 		// Excercise
 		d.setDown();
 		// Verify
-		assert(d.getRadians() == M_PI);
+		assert(approximatelyEqual(d.getRadians(), ((3 * M_PI)/2)));
 		// Teardown
 	}
 
@@ -357,7 +365,7 @@ private:
 		// Excercise
 		d.setUp();
 		// Verify
-		assert(d.getRadians() == 0);
+		assert(approximatelyEqual(d.getRadians(), (M_PI / 2)));
 		// Teardown
 	}
 
@@ -369,7 +377,7 @@ private:
 		// Excercise
 		d.setLeft();
 		// Verify
-		assert(d.getRadians() == 3 * (M_PI / 2));
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -381,7 +389,7 @@ private:
 		// Excercise
 		d.setRight();
 		// Verify
-		assert(d.getRadians() == M_PI / 2);
+		assert(approximatelyEqual(d.getRadians(), 0));
 		// Teardown
 	}
 
@@ -393,7 +401,7 @@ private:
 		// Excercise
 		d.rotate(M_PI);
 		// Verify
-		assert(d.getRadians() == M_PI);
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -405,7 +413,7 @@ private:
 		// Excercise
 		d.rotate(2 * M_PI);
 		// Verify
-		assert(d.getRadians() == 0);
+		assert(approximatelyEqual(d.getRadians(), 0));
 		// Teardown
 	}
 
@@ -417,7 +425,7 @@ private:
 		// Excercise
 		d.rotate(3 * M_PI);
 		// Verify
-		assert(d.getRadians() == 3 * M_PI);
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -429,7 +437,7 @@ private:
 		// Excercise
 		d.rotate(-1 * M_PI);
 		// Verify
-		assert(d.getRadians() == -1 * M_PI);
+		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}
 
@@ -441,7 +449,7 @@ private:
 		// Excercise
 		d.rotate(0);
 		// Verify
-		assert(d.getRadians() == 0);
+		assert(approximatelyEqual(d.getRadians(), 0));
 		// Teardown
 	}
 };
