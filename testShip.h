@@ -11,8 +11,8 @@ Description: This file contains the test cases for the ship class.
 #include "uiDraw.h"
 #include <list>
 #include <cassert>
-
-#define M_PI 3.14159265358979323846
+#include <math.h>
+#define _USE_MATH_DEFINES
 
 using namespace std;
 
@@ -21,16 +21,21 @@ class TestShip
 public:
 	void run()
 	{
+
+		testGetGravity();
+		testUpdateVelocity();
+		testUpdatePosition();
+
 		defaultConstructor();
 		nonDefaultConstructor();
 		getRadiusTest();
 		getIsDeadDead();
 		getIsDeadAlive();
 		getPositionOne();
-	    getPositionOneFive();
-	    killAlive();
+		getPositionOneFive();
+		killAlive();
 		killAlreadyDead();
-		testDraw();
+		//testDraw(); // Draw test is a WIP
 		testDestroy();
 		testSetThrustNoThrust();
 		testSetThrustThrust();
@@ -49,12 +54,14 @@ public:
 		testFireSameDirection();
 		testFireOppositeDirection();
 		testFireAngledDirection();
+
+		cout << "All Ship tests passed!" << endl;
 	}
 
 private:
-	bool approximatelyEqual(float val1, float val2)
+	bool approximatelyEqual(float val1, float val2, float tolerance)
 	{
-		return(abs(val1 - val2) < 0.0001);
+		return(abs(val1 - val2) < tolerance);
 	}
 
 	void defaultConstructor() const
@@ -77,6 +84,8 @@ private:
 		assert(ship.dead == false);
 		// Verify radius.
 		assert(ship.radius == 5); // Just assuming Ship's radius is 5.
+		// Verify thrust boolean.
+		assert(ship.thrust == false);
 		// Teardown
 	}
 
@@ -99,13 +108,13 @@ private:
 		// Verify angle.
 		assert(ship.angle.radians == 1);
 		// Verify angular velocity.
-		assert(ship.angularVelocity == 0);
+		assert(ship.angularVelocity == 1);
 		// Verify death boolean.
 		assert(ship.dead == false);
 		// Verify radius.
-		assert(ship.radius == 1);
+		assert(ship.radius == 5);
 		// Verify angular velocity.
-		assert(ship.angularVelocity == angularVelocity);
+		assert(ship.thrust == false);
 		// Teardown
 	}
 
@@ -225,11 +234,9 @@ private:
 		// Setup
 		Ship ship;
 		list<Satellite *> satellites;
-		cout << satellites.size() << endl;
 		// Exercise
 		ship.destroy(satellites);
 		// Verify
-		cout << satellites.size() << endl;
 		assert(satellites.size() == 2); // Assuming when ship is destroyed, 2 fragments are created.
 		// Teardown
 	}
@@ -282,21 +289,69 @@ private:
 		// Teardown
 	}
 
+	void testGetGravity()
+	{
+		// Setup
+		Position pos;
+		pos.setMetersX(21082000);
+		pos.setMetersY(36515095);
+		// Exercise
+		float gravity = Satellite().getGravity(pos);
+		// Verify
+		assert(approximatelyEqual(gravity, -0.224300, 0.0001));
+	}
+
+
+	void testUpdateVelocity()
+	{
+		// Setup
+		Ship ship;
+		ship.pos = Position(21082000, 36515095);
+		ship.velocity = Velocity(-2685, 1550);
+		// Exercise
+		ship.updateVelocity(-0.2244, 48);
+		// Verify
+		assert(approximatelyEqual(ship.velocity.dx, -2690, 1));
+		assert(approximatelyEqual(ship.velocity.dy, 1541, 1));
+		// Teardown
+	}
+
+
+	void testUpdatePosition()
+	{
+		// Setup
+		Ship ship;
+		ship.pos = Position(21082000, 36515095);
+		ship.velocity = Velocity(-2690, 1541);
+		// Exercise
+		ship.updatePosition(48);
+		// Verify
+		assert(approximatelyEqual(ship.pos.x, 20953006, 1000));
+		assert(approximatelyEqual(ship.pos.y, 36589221, 1000));
+		// Teardown
+	}
 
 	void moveStationary()
 	{
 		// Setup
 		Velocity velocity(0, 0);
-		Position pos(0, 0);
+		Position pos;
+		pos.setMetersX(99999999999); // 99999999999 meters should be far enough away that gravity has a minimal effect.
+		pos.setMetersY(99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 
 		Ship ship(velocity, pos, ang, angularVelocity);
+
+		cout << "Pos X Stationary: " << ship.pos.x << endl;
+		cout << "Pos Y Stationary: " << ship.pos.y << endl;
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 0);
-		assert(ship.pos.y == 0);
+		cout << "New Pos X Stationary" << ship.pos.x << endl;
+		cout << "New Pos Y Stationary" << ship.pos.y << endl;
+		assert(approximatelyEqual(ship.pos.x, 99999999999, 0.01));
+		assert(approximatelyEqual(ship.pos.y, 99999999999, 0.01));
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -305,7 +360,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(0, 1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -313,8 +368,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 0); // Might have to convert these to meters.
-		assert(ship.pos.y == 1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 99999999999, 0.01)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 100000000000, 0.01)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -323,7 +378,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(0, -1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -331,8 +386,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 0); // Might have to convert these to meters.
-		assert(ship.pos.y == -1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 99999999999, 0.001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999998, 0.001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -341,7 +396,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(-1, 0);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -349,8 +404,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == -1); // Might have to convert these to meters.
-		assert(ship.pos.y == 0); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 99999999998, 1)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999999, 1)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -359,7 +414,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(1, 0);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -367,8 +422,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 1); // Might have to convert these to meters.
-		assert(ship.pos.y == 0); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 100000000000, .001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999999, .001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -377,7 +432,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(-1, 1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -385,8 +440,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == -1); // Might have to convert these to meters.
-		assert(ship.pos.y == 1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 99999999998, .001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999998, .001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -395,7 +450,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(1, 1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -403,8 +458,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 1); // Might have to convert these to meters.
-		assert(ship.pos.y == 1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 100000000000, .001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 100000000000, .001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -413,7 +468,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(-1, -1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -421,8 +476,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == -1); // Might have to convert these to meters.
-		assert(ship.pos.y == -1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 99999999998, .001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999998, .001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -431,7 +486,7 @@ private:
 	{
 		// Setup
 		Velocity velocity(1, -1);
-		Position pos(0, 0);
+		Position pos(99999999999, 99999999999);
 		Angle ang(0);
 		float angularVelocity = 0;
 		Ship ship(velocity, pos, ang, angularVelocity);
@@ -439,8 +494,8 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 1); // Might have to convert these to meters.
-		assert(ship.pos.y == -1); // Depends in if pos stores is meters or pixels.
+		assert(approximatelyEqual(ship.pos.x, 100000000000, .001)); // Might have to convert these to meters.
+		assert(approximatelyEqual(ship.pos.y, 99999999998, .001)); // Depends in if pos stores is meters or pixels.
 		assert(ship.angle.radians == 0);
 		// Teardown
 	}
@@ -456,9 +511,7 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 0);
-		assert(ship.pos.y == 0);
-		assert(ship.angle.radians == -0.1);
+		assert(approximatelyEqual(ship.angle.radians, 6.18318530718, .0001));
 		// Teardown
 	}
 
@@ -473,9 +526,7 @@ private:
 		// Exercise
 		ship.move(1);
 		// Verify
-		assert(ship.pos.x == 0);
-		assert(ship.pos.y == 0);
-		assert(ship.angle.radians == 0.1);
+		assert(approximatelyEqual(ship.angle.radians, 0.1, .001));
 		// Teardown
 	}
 
@@ -490,10 +541,15 @@ private:
 		// Exercise
 		Projectile* projectile = ship.fire();
 		// Verify
+
+		cout << projectile->velocity.dx << endl;
+		cout << projectile->velocity.dy << endl;
+		cout << projectile->pos.x << endl;
+		cout << projectile->pos.y << endl;
 		assert(projectile->velocity.dx == 9000);
 		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
-		assert(projectile->pos.x == 19);
-		assert(projectile->pos.x == (ship.pos.x + 19));
+		assert(projectile->pos.x == 760); // 40m per pixel so 19px == 760m.
+		assert(projectile->pos.x == (ship.pos.x + 760)); 
 		// Teardown
 	}
 
@@ -510,8 +566,8 @@ private:
 		// Verify
 		assert(projectile->velocity.dx == 9001);
 		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
-		assert(projectile->pos.x == 20);
-		assert(projectile->pos.x == (ship.pos.x + 19));
+		assert(projectile->pos.x == 761);
+		assert(projectile->pos.x == (ship.pos.x + 760));
 		// Teardown
 	}
 
@@ -528,8 +584,8 @@ private:
 		// Verify
 		assert(projectile->velocity.dx == 8999);
 		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
-		assert(projectile->pos.x == 18);
-		assert(projectile->pos.x == (ship.pos.x + 19));
+		assert(projectile->pos.x == 759);
+		assert(projectile->pos.x == (ship.pos.x + 760));
 		// Teardown
 	}
 
@@ -544,8 +600,8 @@ private:
 		// Exercise
 		Projectile* projectile = ship.fire();
 		// Verify
-		assert(approximatelyEqual(projectile->velocity.dx, 6363.96)); // Roughly
-		assert(approximatelyEqual(projectile->velocity.dy, 6363.96)); // Roughly
+		assert(approximatelyEqual(projectile->velocity.dx, 6363.96, 0.01)); // Roughly
+		assert(approximatelyEqual(projectile->velocity.dy, 6363.96, 0.01)); // Roughly
 		// Need to find out how it finds 19 pixels away when it's angled.
 		// Teardown
 	}

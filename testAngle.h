@@ -340,7 +340,6 @@ private:
 		d.radians = -1 * M_PI;
 		// Excercise
 		// Verify
-		cout << d.getRadians() << endl;
 		assert(approximatelyEqual(d.getRadians(), M_PI));
 		// Teardown
 	}

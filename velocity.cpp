@@ -1,4 +1,12 @@
 #include "Velocity.h"
+#include <iostream>
+using namespace std;
+
+Velocity::Velocity(float vel, Angle ang)
+{
+	this->dx = vel * cos(ang.getRadians());
+	this->dy = vel * sin(ang.getRadians());
+}
 
 Velocity::Velocity(float dx, float dy)
 {
@@ -33,5 +41,6 @@ void Velocity::setAngle(Angle angle)
 
 void Velocity::add(Velocity velocity)
 {
-	// Stub
+	this->dx = this->dx + velocity.dx;
+	this->dy = this->dy + velocity.dy;
 }

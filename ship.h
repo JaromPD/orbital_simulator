@@ -12,7 +12,16 @@ class Ship :
 public:
 	friend class TestShip;
 
-	Ship() {}
+	Ship() 
+	{
+		this->velocity = Velocity();
+		this->pos = Position();
+		this->angle = Angle();
+		this->angularVelocity = 0.00;
+		this->dead = false;
+		this->radius = 5.00;
+		this->thrust = false;
+	};
 	Ship(Velocity vel, Position pos, Angle ang, float angular);
 	void draw(ogstream* gout, bool thrust)
 	{
@@ -25,7 +34,7 @@ public:
 	void rotateLeft() {};
 	void rotateRight() {};
 	void setThrust(bool thrust) { this->thrust = thrust; };
-	Projectile* fire() { Projectile* stubProj = new Projectile() ; return stubProj; };
+	Projectile* fire();
 
 private:
 	bool thrust;
