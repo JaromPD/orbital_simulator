@@ -1,4 +1,7 @@
 #define _USE_MATH_DEFINES
+double SECONDS_PER_DAY = 86400;
+int FRAME_RATE = 30;
+double SECONDS_PER_FRAME = 48;
 #include <cassert>      // for ASSERT
 #include <list>
 #include "uiInteract.h" // for INTERFACE
@@ -7,10 +10,8 @@
 #include "position.h"      // for POINT
 #include "satellite.h"
 #include "ship.h"
+#include "star.h"
 #include <math.h>
-
-#define SECONDS_PER_DAY 86400
-#define FRAME_RATE 30;
 
 using namespace std;
 
@@ -19,37 +20,74 @@ class Position;
 class Simulation {
 public:
     Simulation(Position ptUpperRight) {
-    
-        Ship *ship = new Ship();
-
+        // Create the ship
+        Angle ang(-3.141519 / 6);
+        Velocity vel(-3100, ang);
+        Position pos(21082000, 36515095.125);
+        Ship *ship = new Ship(vel, pos, ang, 0);
         satellites.push_back(ship);
+
+        for (int i = 0; i < 2000; i++)
+        {
+            Star *newStar = new Star();
+            stars.push_back(newStar);
+        }
 
         angleEarth = 0.0;
 
     };
 
     void draw(ogstream* gout) {
-        for (list<Satellite*>::iterator it = satellites.begin(); it != satellites.end(); ++it)
-		    {
-			    (*it)->draw();
-		    }
 
-        cout << "Called Move" << endl;
+        for (auto& satellite : satellites) {
+
+            satellite->draw(gout);
+
+        };
+
+        for (auto& star : stars) {
+			star->draw(gout);
+		};
+
         Position earthPt(0, 0);
         gout->drawEarth(earthPt, angleEarth);
     };
 
     void move() {
     
+        for (auto& satellite : satellites) {
+
+            satellite->move(SECONDS_PER_FRAME);
+
+        };
+
         angleEarth += -(((2 * M_PI) / FRAME_RATE) * (1440 / SECONDS_PER_DAY));
 
     };
 
-    void input() {};
+    void input(const Interface* pUI) {
+    
+        if (pUI->isUp())
+        {
+        }
+
+        if (pUI->isDown())
+        {
+        }
+
+        if (pUI->isLeft())
+        {
+        }
+
+        if (pUI->isRight())
+        {
+		}
+    };
 
 private:
     list<Satellite*> satellites;
     float angleEarth;
+    list<Star*> stars;
 };
 
 void callBack(const Interface* pUI, void* p)
@@ -58,7 +96,7 @@ void callBack(const Interface* pUI, void* p)
     Position pt;
     ogstream *gout = new ogstream();
 
-    pSim->input();
+    pSim->input(pUI);
     pSim->move();
     pSim->draw(gout);
 

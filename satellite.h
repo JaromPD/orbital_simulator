@@ -3,6 +3,7 @@
 #include "velocity.h"
 #include "position.h"
 #include "angle.h"
+#include "uiDraw.h"
 #include <math.h>
 #include <cmath>
 #include <list>
@@ -26,7 +27,7 @@ public:
 	void kill();
 
 	// Virtual functions
-	virtual void draw();
+	virtual void draw(ogstream* gout) {};
 	virtual void destroy(list<Satellite*> &satellites); // Takes satellites as param
 	virtual void move(float time);
 	virtual void input();

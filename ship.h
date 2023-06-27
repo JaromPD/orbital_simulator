@@ -15,7 +15,7 @@ public:
 	Ship() 
 	{
 		this->velocity = Velocity();
-		this->pos = Position();
+		this->pos = Position(21082000, 36515095.125);
 		this->angle = Angle();
 		this->angularVelocity = 0.00;
 		this->dead = false;
@@ -25,6 +25,8 @@ public:
 	Ship(Velocity vel, Position pos, Angle ang, float angular);
 	void draw(ogstream* gout)
 	{
+		cout << pos.getMetersX() << endl;
+		cout << pos.getMetersY() << endl;
 		gout->drawShip(pos, angle.getRadians(), thrust);
 	}
 	void destroy(list<Satellite*>& satellites);

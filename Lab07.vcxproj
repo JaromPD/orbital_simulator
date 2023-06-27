@@ -146,6 +146,7 @@
     <ClCompile Include="satellite.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="star.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="testShip.h" />
     <ClCompile Include="uiDraw.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="projectile.h" />
     <ClInclude Include="satellite.h" />
     <ClInclude Include="ship.h" />
+    <ClInclude Include="star.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testAngle.h" />
     <ClInclude Include="testPosition.h" />

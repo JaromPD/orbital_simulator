@@ -9,11 +9,6 @@ void Satellite::kill()
 	dead = true;
 }
 
-void Satellite::draw()
-{
-	// Stub
-}
-
 void Satellite::destroy(list<Satellite*> &satellites)
 {
 
