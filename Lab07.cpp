@@ -359,7 +359,7 @@ int main(int argc, char** argv)
    Demo demo(ptUpperRight);
 
    // set everything into action
-   ui.run(callBack, &demo);
+   ui.run(callBack(), &demo);
 
 
    return 0;

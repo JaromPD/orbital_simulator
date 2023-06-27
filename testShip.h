@@ -220,7 +220,7 @@ private:
 		ogstreamFake* gout = new ogstreamFake(ship.pos);
 		bool thrust = false;
 		// Exercise
-		ship.draw(gout, thrust);
+		ship.draw(gout);
 		// Verify
 		
 		// Not sure how to verify the Fake draw.

@@ -23,7 +23,7 @@ public:
 		this->thrust = false;
 	};
 	Ship(Velocity vel, Position pos, Angle ang, float angular);
-	void draw(ogstream* gout, bool thrust)
+	void draw(ogstream* gout)
 	{
 		gout->drawShip(pos, angle.getRadians(), thrust);
 	}
