@@ -27,6 +27,11 @@ void Ship::move(float time)
 {
 	float aGravity = getGravity(pos);
 	updateVelocity(aGravity, time);
+	if (thrust)
+	{
+		Angle thrustAngle = angle.getRadians() - ((3 * M_PI )/ 2);
+		velocity.add(Velocity(200, thrustAngle));
+	}
 	updatePosition(time);
 	angle.rotate(this->angularVelocity);
 }

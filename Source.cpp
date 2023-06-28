@@ -21,11 +21,12 @@ class Simulation {
 public:
     Simulation(Position ptUpperRight) {
         // Create the ship
-        Angle ang(-3.141519 / 6);
+        //Angle ang(-3.141519 / 6);
+        Angle ang(0);
         Velocity vel(-3100, ang);
         Position pos(21082000, 36515095.125);
-        Ship *ship = new Ship(vel, pos, ang, 0);
-        satellites.push_back(ship);
+        ship = new Ship(vel, pos, ang, 0);
+        //satellites.push_back(ship);
 
         for (int i = 0; i < 2000; i++)
         {
@@ -39,15 +40,17 @@ public:
 
     void draw(ogstream* gout) {
 
+        for (auto& star : stars) {
+			star->draw(gout);
+		};
+
         for (auto& satellite : satellites) {
 
             satellite->draw(gout);
 
         };
 
-        for (auto& star : stars) {
-			star->draw(gout);
-		};
+        ship->draw(gout);
 
         Position earthPt(0, 0);
         gout->drawEarth(earthPt, angleEarth);
@@ -55,12 +58,15 @@ public:
 
     void move() {
     
+        ship->move(SECONDS_PER_FRAME);
+
         for (auto& satellite : satellites) {
 
             satellite->move(SECONDS_PER_FRAME);
 
         };
 
+        // Move the Earth
         angleEarth += -(((2 * M_PI) / FRAME_RATE) * (1440 / SECONDS_PER_DAY));
 
     };
@@ -73,21 +79,35 @@ public:
 
         if (pUI->isDown())
         {
+            ship->setThrust(true);
+        }
+        else
+        {
+            ship->setThrust(false);
         }
 
         if (pUI->isLeft())
         {
+            ship->rotateLeft();
         }
 
         if (pUI->isRight())
         {
+            ship->rotateRight();
 		}
+
+        if (pUI->isSpace())
+        {
+			Projectile* newProjectile = ship->fire();
+			satellites.push_back(newProjectile);
+        }
     };
 
 private:
     list<Satellite*> satellites;
     float angleEarth;
     list<Star*> stars;
+    Ship* ship;
 };
 
 void callBack(const Interface* pUI, void* p)

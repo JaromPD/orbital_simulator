@@ -33,8 +33,8 @@ public:
 	void move(float time);
 	void input();
 
-	void rotateLeft() {};
-	void rotateRight() {};
+	void rotateLeft() { angle.setRadians(angle.getRadians() - 0.1); };
+	void rotateRight() { angle.setRadians(angle.getRadians() + 0.1); };
 	void setThrust(bool thrust) { this->thrust = thrust; };
 	Projectile* fire();
 
