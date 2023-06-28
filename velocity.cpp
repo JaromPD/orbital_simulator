@@ -4,7 +4,7 @@ using namespace std;
 
 Velocity::Velocity(float vel, Angle ang)
 {
-	this->dx = vel * cos(ang.getRadians());
+	this->dx = -vel * cos(ang.getRadians());
 	this->dy = vel * sin(ang.getRadians());
 }
 

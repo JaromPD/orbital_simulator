@@ -343,13 +343,9 @@ private:
 
 		Ship ship(velocity, pos, ang, angularVelocity);
 
-		cout << "Pos X Stationary: " << ship.pos.x << endl;
-		cout << "Pos Y Stationary: " << ship.pos.y << endl;
 		// Exercise
 		ship.move(1);
 		// Verify
-		cout << "New Pos X Stationary" << ship.pos.x << endl;
-		cout << "New Pos Y Stationary" << ship.pos.y << endl;
 		assert(approximatelyEqual(ship.pos.x, 99999999999, 0.01));
 		assert(approximatelyEqual(ship.pos.y, 99999999999, 0.01));
 		assert(ship.angle.radians == 0);
@@ -541,11 +537,6 @@ private:
 		// Exercise
 		Projectile* projectile = ship.fire();
 		// Verify
-
-		cout << projectile->velocity.dx << endl;
-		cout << projectile->velocity.dy << endl;
-		cout << projectile->pos.x << endl;
-		cout << projectile->pos.y << endl;
 		assert(projectile->velocity.dx == 9000);
 		assert(projectile->velocity.dx == (ship.velocity.dx + 9000));
 		assert(projectile->pos.x == 760); // 40m per pixel so 19px == 760m.

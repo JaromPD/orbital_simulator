@@ -40,14 +40,12 @@ Projectile* Ship::fire()
 {
 	Velocity projVel = this->velocity;
 	float newX = this->pos.getMetersX() + (760 * cos(this->angle.getRadians()));
-	cout << "newX: " << newX << endl;
 	float newY = this->pos.getMetersY() + (760 * sin(this->angle.getRadians()));
-	cout << "newY: " << newY << endl;
 	Position projPos(newX, newY);
-
-	projVel.add(Velocity(9000, this->angle));
-
-	Projectile *proj = new Projectile(projVel, projPos, this->angle);
+	Angle projAngle = this->angle;
+	projAngle.rotate(3.141519 / 2);
+	projVel.add(Velocity(9000, projAngle));
+	Projectile *proj = new Projectile(projVel, projPos, projAngle);
 
 	return proj;
 }
