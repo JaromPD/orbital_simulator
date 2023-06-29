@@ -14,6 +14,9 @@ public:
     Projectile() {};
     Projectile(Velocity vel, Position pos, Angle ang);
 
-    void draw(ogstream* gout) { gout->drawProjectile(pos); };
+    void draw(ogstream* gout);
+
+private:
+    int framesToLive = 70;
 };
 

@@ -1,5 +1,7 @@
 #include "ship.h"
 #include "fragment.h"
+#include <math.h>
+#define _USING_MATH_DEFINES
 
 Ship::Ship(Velocity vel, Position pos, Angle ang, float angular)
 {
@@ -41,10 +43,12 @@ Projectile* Ship::fire()
 	Velocity projVel = this->velocity;
 	float newX = this->pos.getMetersX() + (760 * cos(this->angle.getRadians()));
 	float newY = this->pos.getMetersY() + (760 * sin(this->angle.getRadians()));
+
 	Position projPos(newX, newY);
 	Angle projAngle = this->angle;
-	projAngle.rotate(3.141519 / 2);
+	projAngle.rotate(M_PI / 2);
 	projVel.add(Velocity(9000, projAngle));
+
 	Projectile *proj = new Projectile(projVel, projPos, projAngle);
 
 	return proj;
