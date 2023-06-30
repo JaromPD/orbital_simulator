@@ -31,6 +31,7 @@ public:
 	virtual void destroy(list<Satellite*> &satellites); // Takes satellites as param
 	virtual void move(float time);
 	virtual void input();
+	bool isColliding(Satellite* other);
 protected:
 	float getGravity(Position pos);
 	void updateVelocity(float aGravity, float time);
@@ -51,6 +52,7 @@ public:
 	{
 		this->pos = Position(-36515095.13, 21082000);
 		this->velocity = Velocity(2050, 2684.68);
+		radius = 4;
 	}
 
 	void draw(ogstream* gout)
@@ -66,6 +68,7 @@ public:
 	{
 		this->pos = pos;
 		this->velocity = vel;
+		radius = 12;
 	}
 	void draw(ogstream* gout)
 	{
@@ -80,6 +83,7 @@ public:
 	{
 		this->pos = Position(0, -42164000);
 		this->velocity = Velocity(3100, 0);
+		radius = 10;
 	}
 	void draw(ogstream* gout)
 	{
@@ -94,6 +98,7 @@ public:
 	{
 		this->pos = Position(0, 8000000);
 		this->velocity = Velocity(-7900, 0);
+		radius = 7;
 	}
 
 	void draw(ogstream* gout)
@@ -109,6 +114,7 @@ StarLink() : Satellite()
 	{
 		this->pos = Position(0, -13020000);
 		this->velocity = Velocity(5800, 0);
+		radius = 6;
 	}
 	void draw(ogstream* gout)
 	{

@@ -90,7 +90,7 @@ public:
         ship->move(SECONDS_PER_FRAME);
         list<Satellite*> deadSats;
 
-
+        // Move the satellites
         for (auto& satellite : satellites) {
 
             satellite->move(SECONDS_PER_FRAME);
@@ -101,7 +101,23 @@ public:
 
         };
 
+        // Check for collisions
+        for (auto satellite1 = satellites.begin(); satellite1 != satellites.end(); satellite1++)
+        {
+			for (auto satellite2 = std::next(satellite1);  satellite2 != satellites.end(); satellite2++)
+			{
+				auto& sat1 = *satellite1;
+				auto& sat2 = *satellite2;
+				if (sat1->isColliding(sat2))
+				{
+                    deadSats.push_back(sat1);
+                    deadSats.push_back(sat2);
+				}
+			}
+		}
+
         for (auto& deadSat : deadSats) {
+            deadSat->destroy(satellites);
 			satellites.remove(deadSat);
         }
 

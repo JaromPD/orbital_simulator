@@ -62,3 +62,20 @@ void Satellite::input()
 {
 	// Stub
 }
+
+bool Satellite::isColliding(Satellite* other)
+{
+
+	float distance = sqrt((pos.getMetersX() - other->pos.getMetersX()) * (pos.getMetersX() - other->pos.getMetersX()) + 
+		                  (pos.getMetersY() - other->pos.getMetersY()) * (pos.getMetersY() - other->pos.getMetersY()));
+	int pixelPercision = 5; // TO DO: Figure out if this is a good precision.
+	float radii = (radius + other->radius + pixelPercision) * 40; // Since there are 40 pixels per meter, we need to multiply the radii by 40 to get the correct distance.
+	if (distance < radii)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
