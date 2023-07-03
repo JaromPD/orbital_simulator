@@ -235,7 +235,7 @@ private:
 		Ship ship;
 		list<Satellite *> satellites;
 		// Exercise
-		ship.destroy(satellites);
+		//ship.destroy(satellites);
 		// Verify
 		assert(satellites.size() == 2); // Assuming when ship is destroyed, 2 fragments are created.
 		// Teardown

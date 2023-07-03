@@ -68,7 +68,8 @@ bool Satellite::isColliding(Satellite* other)
 
 	float distance = sqrt((pos.getMetersX() - other->pos.getMetersX()) * (pos.getMetersX() - other->pos.getMetersX()) + 
 		                  (pos.getMetersY() - other->pos.getMetersY()) * (pos.getMetersY() - other->pos.getMetersY()));
-	int pixelPercision = 5; // TO DO: Figure out if this is a good precision.
+
+	int pixelPercision = 50000; // TO DO: Collisions are NOT accurate. With a percision this big radius essentially does not matter. This is WAY too many pixels.
 	float radii = (radius + other->radius + pixelPercision) * 40; // Since there are 40 pixels per meter, we need to multiply the radii by 40 to get the correct distance.
 	if (distance < radii)
 	{

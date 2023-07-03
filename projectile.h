@@ -18,5 +18,6 @@ public:
 
 private:
     int framesToLive = 70;
+    float radisu = 0.5;
 };
 

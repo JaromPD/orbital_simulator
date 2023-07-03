@@ -9,6 +9,7 @@ double SECONDS_PER_FRAME = 48;
 #include"test.h"
 #include "position.h"      // for POINT
 #include "satellite.h"
+#include "fragment.h"
 #include "ship.h"
 #include "star.h"
 #include <math.h>
@@ -43,6 +44,8 @@ public:
         satellites.push_back(gps5);
         GPS* gps6 = new GPS(Position(-23001634, 13280000), Velocity(-1940, -3360.18));
         satellites.push_back(gps6);
+        Fragment* frag = new Fragment(Position(10000000, 10000000), Velocity(0, 0), Angle(0));
+        satellites.push_back(frag);
 
         // Create the Hubble telescope.
         Hubble* hubble = new Hubble();
@@ -56,7 +59,7 @@ public:
         StarLink* starLink = new StarLink();
         satellites.push_back(starLink);
 
-
+        // Create the stars.
         for (int i = 0; i < 2000; i++)
         {
             Star *newStar = new Star();
@@ -87,6 +90,12 @@ public:
 
     void move() {
     
+        if (ship->isDead() != true)
+        {
+            ship->destroy(&satellites);
+            ship->kill();
+        }
+
         ship->move(SECONDS_PER_FRAME);
         list<Satellite*> deadSats;
 
@@ -110,8 +119,8 @@ public:
 				auto& sat2 = *satellite2;
 				if (sat1->isColliding(sat2))
 				{
-                    deadSats.push_back(sat1);
-                    deadSats.push_back(sat2);
+                    //deadSats.push_back(sat1); // To Do: Fix this
+                    //deadSats.push_back(sat2);
 				}
 			}
 		}

@@ -5,14 +5,21 @@ class Fragment :
 {
 public:
     Fragment() {};
-    Fragment(Velocity velocity, Angle angle) {};
-    Fragment(Velocity velocity, Angle angle, bool addKick) {};
+    Fragment(Position pos, Velocity velocity, Angle angle);
+    Fragment(Position pos, Velocity velocity, Angle angle, bool addKick);
 
     void draw(ogstream* gout) {
-        gout->drawFragment(pos, 0);
+        gout->drawFragment(pos, 3);
+
+        framesToLive--;
+        if (framesToLive <= 0)
+        {
+            dead = true;
+        };
     };
 
 private:
     float radius = 2;
+    int framesToLive = 1;
 };
 
