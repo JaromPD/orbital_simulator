@@ -1,16 +1,12 @@
-#include "fragment.h"
-#include "uiDraw.h"
-
-Fragment::Fragment(Position pos, Velocity velocity, Angle angle, bool addKick)
+#include "part.h"
+Part::Part(Position pos, Velocity velocity, Angle angle, bool addKick)
 {
-	// To Do: This is reduntant code from part.cpp. The only dfference is the frames to live and draw.
 	this->velocity = velocity;
 	this->angle = angle;
 	float newX = pos.getMetersX() + (160 * cos(this->angle.getRadians()));
 	float newY = pos.getMetersY() + (160 * sin(this->angle.getRadians()));
 	this->pos = Position(newX, newY);
-	this->angularVelocity = random(-100, 100);
-	framesToLive = random(50, 100);
+	this->angularVelocity = random(-100, 100); // To Do: Get this to add the spin.
 
 	if (addKick)
 	{

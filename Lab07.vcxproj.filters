@@ -16,6 +16,15 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{70d2fb1f-26e8-45a0-9bc6-6bba1ce3d94c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Satellites">
+      <UniqueIdentifier>{5efb73f3-27ee-4f8b-a9bc-485ffa73bf32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Satellites\Parts">
+      <UniqueIdentifier>{151a3bf0-ab36-41f0-a10b-270b1ab45fb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Satellites\Parts\GPSParts">
+      <UniqueIdentifier>{583c5c2d-5ff3-4a33-8820-9ee25989f44b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="uiDraw.cpp">
@@ -27,9 +36,6 @@
     <ClCompile Include="position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="satellite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="velocity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,9 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="whole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="testShip.h">
@@ -60,6 +63,30 @@
     <ClCompile Include="star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ship.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="satellite.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="sputnik.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="part.cpp">
+      <Filter>Satellites\Parts</Filter>
+    </ClCompile>
+    <ClCompile Include="gps.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="gpsLeft.cpp">
+      <Filter>Satellites\Parts\GPSParts</Filter>
+    </ClCompile>
+    <ClCompile Include="gpsCenter.cpp">
+      <Filter>Satellites\Parts\GPSParts</Filter>
+    </ClCompile>
+    <ClCompile Include="gpsRight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uiDraw.h">
@@ -71,9 +98,6 @@
     <ClInclude Include="position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="satellite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="velocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,9 +105,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="whole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="test.h">
@@ -102,6 +123,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ship.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="satellite.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="sputnik.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="part.h">
+      <Filter>Satellites\Parts</Filter>
+    </ClInclude>
+    <ClInclude Include="gps.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="gpsCenter.h">
+      <Filter>Satellites\Parts\GPSParts</Filter>
+    </ClInclude>
+    <ClInclude Include="gpsLeft.h">
+      <Filter>Satellites\Parts\GPSParts</Filter>
+    </ClInclude>
+    <ClInclude Include="gpsRight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

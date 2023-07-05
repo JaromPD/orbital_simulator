@@ -141,11 +141,17 @@
   <ItemGroup>
     <ClCompile Include="angle.cpp" />
     <ClCompile Include="fragment.cpp" />
+    <ClCompile Include="gps.cpp" />
+    <ClCompile Include="gpsCenter.cpp" />
+    <ClCompile Include="gpsLeft.cpp" />
+    <ClCompile Include="gpsRight.cpp" />
+    <ClCompile Include="part.cpp" />
     <ClCompile Include="position.cpp" />
     <ClCompile Include="projectile.cpp" />
     <ClCompile Include="satellite.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="sputnik.cpp" />
     <ClCompile Include="star.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="testShip.h" />
@@ -157,10 +163,16 @@
   <ItemGroup>
     <ClInclude Include="angle.h" />
     <ClInclude Include="fragment.h" />
+    <ClInclude Include="gps.h" />
+    <ClInclude Include="gpsCenter.h" />
+    <ClInclude Include="gpsLeft.h" />
+    <ClInclude Include="gpsRight.h" />
+    <ClInclude Include="part.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="projectile.h" />
     <ClInclude Include="satellite.h" />
     <ClInclude Include="ship.h" />
+    <ClInclude Include="sputnik.h" />
     <ClInclude Include="star.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testAngle.h" />

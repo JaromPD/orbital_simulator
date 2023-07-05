@@ -9,7 +9,7 @@ void Satellite::kill()
 	dead = true;
 }
 
-void Satellite::destroy(list<Satellite*> &satellites)
+void Satellite::destroy(list<Satellite*>* satellites)
 {
 
 }
@@ -69,8 +69,8 @@ bool Satellite::isColliding(Satellite* other)
 	float distance = sqrt((pos.getMetersX() - other->pos.getMetersX()) * (pos.getMetersX() - other->pos.getMetersX()) + 
 		                  (pos.getMetersY() - other->pos.getMetersY()) * (pos.getMetersY() - other->pos.getMetersY()));
 
-	int pixelPercision = 50000; // TO DO: Collisions are NOT accurate. With a percision this big radius essentially does not matter. This is WAY too many pixels.
-	float radii = (radius + other->radius + pixelPercision) * 40; // Since there are 40 pixels per meter, we need to multiply the radii by 40 to get the correct distance.
+	float radii = (radius + other->radius) * 128000; // Since the zoom is 128000, we need to multiply by that to get the correct radius. To Do: Make this scale with zoom.
+
 	if (distance < radii)
 	{
 		return true;

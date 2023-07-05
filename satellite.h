@@ -28,7 +28,7 @@ public:
 
 	// Virtual functions
 	virtual void draw(ogstream* gout) {};
-	virtual void destroy(list<Satellite*> &satellites); // Takes satellites as param
+	virtual void destroy(list<Satellite*>* satellites); // Takes satellites as param
 	void move(float time);
 	virtual void input();
 	bool isColliding(Satellite* other);
@@ -44,37 +44,6 @@ protected:
 	bool dead;
 	float radius;
 };
-
-class Sputnik : public Satellite
-{
-public:
-	Sputnik() : Satellite()
-	{
-		this->pos = Position(-36515095.13, 21082000);
-		this->velocity = Velocity(2050, 2684.68);
-		radius = 4;
-	}
-
-	void draw(ogstream* gout)
-	{
-		gout->drawSputnik(pos, 0);
-	}
-};
-
-class GPS : public Satellite
-{
-public:
-	GPS(Position pos, Velocity vel) : Satellite()
-	{
-		this->pos = pos;
-		this->velocity = vel;
-		radius = 12;
-	}
-	void draw(ogstream* gout)
-	{
-		gout->drawGPS(pos, 0);
-	}
-};;
 
 class Hubble : public Satellite
 {

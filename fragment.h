@@ -1,11 +1,10 @@
 #pragma once
-#include "satellite.h"
+#include "part.h"
 class Fragment :
-    public Satellite
+    public Part
 {
 public:
     Fragment() {};
-    Fragment(Position pos, Velocity velocity, Angle angle);
     Fragment(Position pos, Velocity velocity, Angle angle, bool addKick);
 
     void draw(ogstream* gout) {
@@ -20,6 +19,6 @@ public:
 
 private:
     float radius = 2;
-    int framesToLive = 1;
+    int framesToLive = 70;
 };
 
