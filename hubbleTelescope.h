@@ -1,14 +1,15 @@
 #pragma once
 #include "part.h"
 #include "fragment.h"
-class GPSLeft :
+class HubbleTelescope :
     public Part
 {
-    public:
-	GPSLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
+public:
+
+	HubbleTelescope(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
 
 	void draw(ogstream* gout) {
-		gout->drawGPSLeft(pos, 0);
+		gout->drawHubbleTelescope(pos, 0);
 	};
 
 	void destroy(list<Satellite*>* satellites)
@@ -26,6 +27,6 @@ class GPSLeft :
 	}
 
 private:
-	float radius = 8;
+	float radius = 10;
 };
 

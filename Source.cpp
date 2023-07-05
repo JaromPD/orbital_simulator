@@ -2,19 +2,25 @@
 double SECONDS_PER_DAY = 86400;
 int FRAME_RATE = 30;
 double SECONDS_PER_FRAME = 48;
+
 #include <cassert>      // for ASSERT
-#include <list>
+#include <list>         // for satellite List
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
-#include"test.h"
-#include "position.h"      // for POINT
+#include"test.h"        // for testing
+#include "position.h"   // for POINT
+#include <math.h>       // for M_PI
+
+// All the satellites
 #include "satellite.h"
 #include "sputnik.h"
 #include "gps.h"
+#include "hubble.h"
+#include "dragon.h"
+#include "starLink.h"
 #include "fragment.h"
 #include "ship.h"
 #include "star.h"
-#include <math.h>
 
 using namespace std;
 

@@ -19,11 +19,20 @@
     <Filter Include="Satellites">
       <UniqueIdentifier>{5efb73f3-27ee-4f8b-a9bc-485ffa73bf32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Satellites\Parts">
+    <Filter Include="Parts">
       <UniqueIdentifier>{151a3bf0-ab36-41f0-a10b-270b1ab45fb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Satellites\Parts\GPSParts">
+    <Filter Include="Parts\GPSParts">
       <UniqueIdentifier>{583c5c2d-5ff3-4a33-8820-9ee25989f44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parts\HubbleParts">
+      <UniqueIdentifier>{d988320a-a0fd-4693-9046-f403395fdbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parts\DragonParts">
+      <UniqueIdentifier>{177bf82d-572f-433f-b78f-be9509771bef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parts\StarLinkParts">
+      <UniqueIdentifier>{ae845ee2-6b68-4477-bd84-ae0d81217a25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,19 +82,55 @@
       <Filter>Satellites</Filter>
     </ClCompile>
     <ClCompile Include="part.cpp">
-      <Filter>Satellites\Parts</Filter>
+      <Filter>Parts</Filter>
     </ClCompile>
     <ClCompile Include="gps.cpp">
       <Filter>Satellites</Filter>
     </ClCompile>
     <ClCompile Include="gpsLeft.cpp">
-      <Filter>Satellites\Parts\GPSParts</Filter>
+      <Filter>Parts\GPSParts</Filter>
     </ClCompile>
     <ClCompile Include="gpsCenter.cpp">
-      <Filter>Satellites\Parts\GPSParts</Filter>
+      <Filter>Parts\GPSParts</Filter>
     </ClCompile>
     <ClCompile Include="gpsRight.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Parts\GPSParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubbleTelescope.cpp">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubbleComputer.cpp">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubble.cpp">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubbleRight.cpp">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubbleLeft.cpp">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClCompile>
+    <ClCompile Include="dragon.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="dragonCenter.cpp">
+      <Filter>Parts\DragonParts</Filter>
+    </ClCompile>
+    <ClCompile Include="dragonLeft.cpp">
+      <Filter>Parts\DragonParts</Filter>
+    </ClCompile>
+    <ClCompile Include="dragonRight.cpp">
+      <Filter>Parts\DragonParts</Filter>
+    </ClCompile>
+    <ClCompile Include="starLink.cpp">
+      <Filter>Satellites</Filter>
+    </ClCompile>
+    <ClCompile Include="starLinkBody.cpp">
+      <Filter>Parts\StarLinkParts</Filter>
+    </ClCompile>
+    <ClCompile Include="starLinkArray.cpp">
+      <Filter>Parts\StarLinkParts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,19 +180,55 @@
       <Filter>Satellites</Filter>
     </ClInclude>
     <ClInclude Include="part.h">
-      <Filter>Satellites\Parts</Filter>
+      <Filter>Parts</Filter>
     </ClInclude>
     <ClInclude Include="gps.h">
       <Filter>Satellites</Filter>
     </ClInclude>
     <ClInclude Include="gpsCenter.h">
-      <Filter>Satellites\Parts\GPSParts</Filter>
+      <Filter>Parts\GPSParts</Filter>
     </ClInclude>
     <ClInclude Include="gpsLeft.h">
-      <Filter>Satellites\Parts\GPSParts</Filter>
+      <Filter>Parts\GPSParts</Filter>
     </ClInclude>
     <ClInclude Include="gpsRight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Parts\GPSParts</Filter>
+    </ClInclude>
+    <ClInclude Include="hubbleTelescope.h">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClInclude>
+    <ClInclude Include="hubble.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="hubbleComputer.h">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClInclude>
+    <ClInclude Include="hubbleLeft.h">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClInclude>
+    <ClInclude Include="hubbleRight.h">
+      <Filter>Parts\HubbleParts</Filter>
+    </ClInclude>
+    <ClInclude Include="dragon.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="dragonCenter.h">
+      <Filter>Parts\DragonParts</Filter>
+    </ClInclude>
+    <ClInclude Include="dragonLeft.h">
+      <Filter>Parts\DragonParts</Filter>
+    </ClInclude>
+    <ClInclude Include="dragonRight.h">
+      <Filter>Parts\DragonParts</Filter>
+    </ClInclude>
+    <ClInclude Include="starLink.h">
+      <Filter>Satellites</Filter>
+    </ClInclude>
+    <ClInclude Include="starLinkBody.h">
+      <Filter>Parts\StarLinkParts</Filter>
+    </ClInclude>
+    <ClInclude Include="starLinkArray.h">
+      <Filter>Parts\StarLinkParts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -140,11 +140,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="angle.cpp" />
+    <ClCompile Include="dragon.cpp" />
+    <ClCompile Include="dragonCenter.cpp" />
+    <ClCompile Include="dragonLeft.cpp" />
+    <ClCompile Include="dragonRight.cpp" />
     <ClCompile Include="fragment.cpp" />
     <ClCompile Include="gps.cpp" />
     <ClCompile Include="gpsCenter.cpp" />
     <ClCompile Include="gpsLeft.cpp" />
     <ClCompile Include="gpsRight.cpp" />
+    <ClCompile Include="hubble.cpp" />
+    <ClCompile Include="hubbleComputer.cpp" />
+    <ClCompile Include="hubbleLeft.cpp" />
+    <ClCompile Include="hubbleRight.cpp" />
+    <ClCompile Include="hubbleTelescope.cpp" />
     <ClCompile Include="part.cpp" />
     <ClCompile Include="position.cpp" />
     <ClCompile Include="projectile.cpp" />
@@ -153,6 +162,9 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sputnik.cpp" />
     <ClCompile Include="star.cpp" />
+    <ClCompile Include="starLink.cpp" />
+    <ClCompile Include="starLinkArray.cpp" />
+    <ClCompile Include="starLinkBody.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="testShip.h" />
     <ClCompile Include="uiDraw.cpp" />
@@ -162,11 +174,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="angle.h" />
+    <ClInclude Include="dragon.h" />
+    <ClInclude Include="dragonCenter.h" />
+    <ClInclude Include="dragonLeft.h" />
+    <ClInclude Include="dragonRight.h" />
     <ClInclude Include="fragment.h" />
     <ClInclude Include="gps.h" />
     <ClInclude Include="gpsCenter.h" />
     <ClInclude Include="gpsLeft.h" />
     <ClInclude Include="gpsRight.h" />
+    <ClInclude Include="hubble.h" />
+    <ClInclude Include="hubbleComputer.h" />
+    <ClInclude Include="hubbleLeft.h" />
+    <ClInclude Include="hubbleRight.h" />
+    <ClInclude Include="hubbleTelescope.h" />
     <ClInclude Include="part.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="projectile.h" />
@@ -174,6 +195,9 @@
     <ClInclude Include="ship.h" />
     <ClInclude Include="sputnik.h" />
     <ClInclude Include="star.h" />
+    <ClInclude Include="starLink.h" />
+    <ClInclude Include="starLinkArray.h" />
+    <ClInclude Include="starLinkBody.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testAngle.h" />
     <ClInclude Include="testPosition.h" />
