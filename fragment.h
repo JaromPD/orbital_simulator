@@ -22,6 +22,11 @@ public:
 
 	void draw(ogstream* gout) {
 		gout->drawFragment(pos, 0);
+		framesToLive--;
+		if (framesToLive <= 0)
+		{
+			kill();
+		}
 	};
 
 private:
