@@ -27,7 +27,7 @@ public:
 	{
 		gout->drawShip(pos, angle.getRadians(), thrust);
 	}
-	void destroy(list<Satellite*> *satellites);
+	void destroy(list<Satellite*>* satellites);
 	void move(float time);
 	void input();
 

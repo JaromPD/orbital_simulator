@@ -15,16 +15,13 @@ Ship::Ship(Velocity vel, Position pos, Angle ang, float angular)
 	this->thrust = false;
 }
 
-void Ship::destroy(list<Satellite*> *satellites)
+void Ship::destroy(list<Satellite*>* satellites)
 {
 	bool addKick = true;
-	//Fragment *fragment1 = new Fragment(pos, velocity, angle, addKick); // To Do: Fix this
-	//Fragment *fragment2 = new Fragment(pos, velocity, angle, addKick);
 
 	Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
 	Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
 
-	cout << "BOOM" << endl;
 	satellites->push_back(fragment1);
 	satellites->push_back(fragment2);
 }
@@ -45,8 +42,8 @@ void Ship::move(float time)
 Projectile* Ship::fire()
 {
 	Velocity projVel = this->velocity;
-	float newX = this->pos.getMetersX() + (760 * cos(this->angle.getRadians()));
-	float newY = this->pos.getMetersY() + (760 * sin(this->angle.getRadians()));
+	float newX = this->pos.getMetersX() + (2432000 * cos(this->angle.getRadians()));
+	float newY = this->pos.getMetersY() + (2432000 * sin(this->angle.getRadians()));
 
 	Position projPos(newX, newY);
 	Angle projAngle = this->angle;

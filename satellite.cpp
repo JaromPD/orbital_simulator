@@ -80,3 +80,19 @@ bool Satellite::isColliding(Satellite* other)
 		return false;
 	}
 }
+
+bool Satellite::isCollidingEarth()
+{
+	float distance = sqrt((pos.getMetersX() - 0) * (pos.getMetersX() - 0) + 
+		                  (pos.getMetersY() - 0) * (pos.getMetersY() - 0));
+
+	float radii = (radius + 128000) + EARTH_RADIUS; // Since the zoom is 128000, we need to multiply by that to get the correct radius. To Do: Make this scale with zoom.
+	if (distance < radii)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

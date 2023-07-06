@@ -88,7 +88,11 @@ public:
 
         };
 
-        ship->draw(gout);
+        // Dont draw the ship if it is dead.
+        if (ship != nullptr)
+        {
+            ship->draw(gout);
+        }
 
         Position earthPt(0, 0);
         gout->drawEarth(earthPt, angleEarth);
@@ -96,7 +100,10 @@ public:
 
     void move() {
 
-        ship->move(SECONDS_PER_FRAME);
+        if (ship != nullptr)
+        {
+            ship->move(SECONDS_PER_FRAME);
+        }
         list<Satellite*> deadSats;
 
         // Move the satellites
@@ -123,12 +130,49 @@ public:
                     deadSats.push_back(sat1);
                     deadSats.push_back(sat2);
 				}
+
+                if (sat2->isCollidingEarth())
+                {
+					deadSats.push_back(sat2);
+				}
+
 			}
+
+            // Check for collisions with the ship.
+            if (ship != nullptr) {
+                if ((ship->isColliding(*satellite1) && !ship->isDead()))
+                {
+                    deadSats.push_back(*satellite1);
+                    ship->kill();
+                    
+                }
+
+                if (ship->isCollidingEarth())
+                {
+					ship->kill();
+				}
+            }
+
+            
+
 		}
 
+        // Remove dead satellites.
         for (auto& deadSat : deadSats) {
+
             deadSat->destroy(&satellites);
 			satellites.remove(deadSat);
+
+        }
+
+        if (ship != nullptr)
+        {
+            if (ship->isDead())
+            {
+                ship->destroy(&satellites);
+                delete ship;
+                ship = nullptr;
+            }
         }
 
         // Move the Earth
@@ -137,34 +181,33 @@ public:
     };
 
     void input(const Interface* pUI) {
-    
-        if (pUI->isUp())
-        {
-        }
 
-        if (pUI->isDown())
+        if (ship != nullptr)
         {
-            ship->setThrust(true);
-        }
-        else
-        {
-            ship->setThrust(false);
-        }
+            if (pUI->isDown())
+            {
+                ship->setThrust(true);
+            }
+            else
+            {
+                ship->setThrust(false);
+            }
 
-        if (pUI->isLeft())
-        {
-            ship->rotateLeft();
-        }
+            if (pUI->isLeft())
+            {
+                ship->rotateLeft();
+            }
 
-        if (pUI->isRight())
-        {
-            ship->rotateRight();
-		}
+            if (pUI->isRight())
+            {
+                ship->rotateRight();
+            }
 
-        if (pUI->isSpace())
-        {
-			Projectile* newProjectile = ship->fire();
-			satellites.push_back(newProjectile);
+            if (pUI->isSpace())
+            {
+                Projectile* newProjectile = ship->fire();
+                satellites.push_back(newProjectile);
+            }
         }
     };
 

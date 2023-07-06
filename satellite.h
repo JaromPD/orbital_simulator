@@ -32,6 +32,7 @@ public:
 	void move(float time);
 	virtual void input();
 	bool isColliding(Satellite* other);
+	bool isCollidingEarth();
 protected:
 	float getGravity(Position pos);
 	void updateVelocity(float aGravity, float time);
