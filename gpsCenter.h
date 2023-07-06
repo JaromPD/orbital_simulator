@@ -9,7 +9,10 @@ class GPSCenter :
 {
 public:
 
-	GPSCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
+	GPSCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+	{
+		this->radius = 7;
+	};
 
     void draw(ogstream* gout) {
 		gout->drawGPSCenter(pos, 0);
@@ -28,8 +31,5 @@ public:
 		satellites->push_back(fragment2);
 		satellites->push_back(fragment3);
 	}
-
-private:
-	float radius = 7;
 };
 

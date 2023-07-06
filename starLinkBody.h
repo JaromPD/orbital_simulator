@@ -6,7 +6,10 @@ class StarLinkBody :
 {
 public:
 
-	StarLinkBody(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
+	StarLinkBody(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+	{
+		this->radius = 2;
+	};
 
 	void draw(ogstream* gout) {
 		gout->drawStarlinkBody(pos, 0);
@@ -24,8 +27,5 @@ public:
 		satellites->push_back(fragment2);
 		satellites->push_back(fragment3);
 	}
-
-private:
-	float radius = 2;
 };
 

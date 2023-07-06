@@ -6,7 +6,10 @@ class DragonCenter :
 {
 public:
 
-	DragonCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
+	DragonCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) 
+	{
+		this->radius = 6;
+	};
 
 	void draw(ogstream* gout) {
 		gout->drawCrewDragonCenter(pos, 0);
@@ -27,8 +30,5 @@ public:
 		satellites->push_back(fragment3);
 		satellites->push_back(fragment4);
 	}
-
-private:
-	float radius = 6;
 };
 

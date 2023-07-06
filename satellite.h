@@ -21,6 +21,13 @@ public:
 		// Stub
 	}
 
+	Satellite(Velocity vel, Position pos, Angle angle)
+	{
+		this->velocity = vel;
+		this->pos = pos;
+		this->angle = angle;
+	}
+
 	float getRadius()      const { return radius; };
 	bool isDead()          const { return dead;   };
 	Position getPosition() const { return pos;    };

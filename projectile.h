@@ -1,23 +1,32 @@
 #pragma once
 #include "satellite.h"
-#include "velocity.h"
-#include "position.h"
-#include "uiDraw.h"
-#include "angle.h"
-
-class Projectile :
-    public Satellite
+#include "gpsCenter.h"
+#include "gpsLeft.h"
+#include "gpsRight.h"
+#include "fragment.h"
+class Projectile : public Satellite
 {
 public:
-    friend class TestShip;
+	Projectile(Velocity vel, Position pos, Angle ang) : Satellite()
+	{
+		this->pos = pos;
+		this->velocity = vel;
+		this->angle = ang;
+		radius = 1;
+	}
+	void draw(ogstream* gout)
+	{
+		gout->drawProjectile(pos);
 
-    Projectile() {};
-    Projectile(Velocity vel, Position pos, Angle ang);
+		framesToLive--;
+		if (framesToLive <= 0)
+		{
+			kill();
+		}
 
-    void draw(ogstream* gout);
+	}
 
 private:
-    int framesToLive = 70;
-    float radisu = 0.5;
+	int framesToLive = 70;
 };
 

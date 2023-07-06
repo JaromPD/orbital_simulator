@@ -11,5 +11,5 @@ Part::Part(Position pos, Velocity velocity, Angle angle, bool addKick)
 		this->velocity.add(Velocity(random(5000, 9000), Angle(rand() % 360)));
 	}
 
-	move(2*48); // To Do: Make this use a constant/
+	move(3*48); // To Do: Make this use a constant/
 }

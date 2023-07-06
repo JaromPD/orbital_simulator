@@ -6,7 +6,10 @@ class DragonLeft :
 {
 public:
 
-	DragonLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick) {};
+	DragonLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+	{
+		this->radius = 6;
+	};
 
 	void draw(ogstream* gout) {
 		gout->drawCrewDragonLeft(pos, 0);
@@ -19,12 +22,8 @@ public:
 		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
 		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
 
-
 		satellites->push_back(fragment1);
 		satellites->push_back(fragment2);
 	}
-
-private:
-	float radius = 6;
 };
 
