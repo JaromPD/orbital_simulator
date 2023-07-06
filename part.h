@@ -7,8 +7,6 @@ public:
     Part() {};
     Part(Position pos, Velocity velocity, Angle angle, bool addKick);
 
-    //virtual void draw(ogstream* gout) {};
-
 private:
     float radius;
 };

@@ -144,17 +144,14 @@ public:
                 {
                     deadSats.push_back(*satellite1);
                     ship->kill();
-                    
+
                 }
 
                 if (ship->isCollidingEarth())
                 {
-					ship->kill();
-				}
+                    ship->kill();
+                }
             }
-
-            
-
 		}
 
         // Remove dead satellites.
@@ -162,7 +159,6 @@ public:
 
             deadSat->destroy(&satellites);
 			satellites.remove(deadSat);
-
         }
 
         if (ship != nullptr)

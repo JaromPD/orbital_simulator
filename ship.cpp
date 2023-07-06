@@ -33,7 +33,7 @@ void Ship::move(float time)
 	if (thrust)
 	{
 		Angle thrustAngle = angle.getRadians() - ((3 * M_PI )/ 2);
-		velocity.add(Velocity(200, thrustAngle));
+		velocity.add(Velocity(2*48, thrustAngle)); // To Do: Figure what speed really needs to be.
 	}
 	updatePosition(time);
 	angle.rotate(this->angularVelocity);
@@ -42,15 +42,14 @@ void Ship::move(float time)
 Projectile* Ship::fire()
 {
 	Velocity projVel = this->velocity;
-	float newX = this->pos.getMetersX() + (2432000 * cos(this->angle.getRadians()));
-	float newY = this->pos.getMetersY() + (2432000 * sin(this->angle.getRadians()));
-
-	Position projPos(newX, newY);
+	Position projPos = this->pos;
 	Angle projAngle = this->angle;
 	projAngle.rotate(M_PI / 2);
 	projVel.add(Velocity(9000, projAngle));
 
-	Projectile *proj = new Projectile(projVel, projPos, projAngle);
+	Projectile* proj = new Projectile(projVel, projPos, projAngle);
+
+	proj->move(2 * 48); // To Do: Use the time constant rather than hard code.
 
 	return proj;
 }

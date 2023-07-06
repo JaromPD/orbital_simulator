@@ -30,6 +30,6 @@ public:
 	}
 
 private:
-	float radius = 70;
+	float radius = 7;
 };
 
