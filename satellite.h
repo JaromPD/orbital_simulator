@@ -32,6 +32,7 @@ public:
 	bool isDead()          const { return dead;   };
 	Position getPosition() const { return pos;    };
 	void kill();
+	void setAngleRadians(float angle) { this->angle.setRadians(angle); }; // To Do: Do we want other classes to be able to set the angle? Part will need to to space themselves out evenly.
 
 	// Virtual functions
 	virtual void draw(ogstream* gout) {};

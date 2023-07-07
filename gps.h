@@ -4,6 +4,8 @@
 #include "gpsLeft.h"
 #include "gpsRight.h"
 #include "fragment.h"
+
+
 class GPS : public Satellite
 {
 public:
@@ -18,21 +20,42 @@ public:
 		gout->drawGPS(pos, 0);
 	}
 
+	list<Part*> createDebris()
+	{
+		list<Part*> debris;
+
+		Fragment* fragment1 = new Fragment(pos, velocity, angle);
+		Fragment* fragment2 = new Fragment(pos, velocity, angle);
+		GPSCenter* gpsCenter = new GPSCenter(pos, velocity, angle);
+		GPSLeft* gpsLeft = new GPSLeft(pos, velocity, angle);
+		GPSRight* gpsRight = new GPSRight(pos, velocity, angle);
+
+		debris.push_back(fragment1);
+		debris.push_back(fragment2);
+		debris.push_back(gpsCenter);
+		debris.push_back(gpsLeft);
+		debris.push_back(gpsRight);
+
+		return debris;
+	}
+
 	void destroy(list<Satellite*>* satellites)
 	{
-		bool addKick = true;
+		list<Part*> debris = createDebris();
+		float offset = (2 * M_PI) / debris.size();
 
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		GPSCenter* gpsCenter = new GPSCenter(pos, velocity, angle, addKick);
-		GPSLeft* gpsLeft = new GPSLeft(pos, velocity, angle, addKick);
-		GPSRight* gpsRight = new GPSRight(pos, velocity, angle, addKick);
+		int partNum = 0;
+		for (auto part : debris)
+		{
+			float angle = offset * (partNum);
+			part->setAngleRadians(angle);
 
-		satellites->push_back(fragment1);
-		satellites->push_back(fragment2);
-		satellites->push_back(gpsCenter);
-		satellites->push_back(gpsLeft);
-		satellites->push_back(gpsRight);
+			part->addKick();
+			part->move(3 * 48); // To Do: Make move take no parameters? Always assume the time == 48?
+			satellites->push_back(part);
+			partNum++;
+
+		}
 	}
 
 };

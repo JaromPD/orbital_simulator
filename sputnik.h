@@ -18,14 +18,10 @@ public:
 
 	void destroy(list<Satellite*>* satellites)
 	{
-		bool addKick = true;
-		//Fragment *fragment1 = new Fragment(pos, velocity, angle, addKick); // To Do: Fix this
-		//Fragment *fragment2 = new Fragment(pos, velocity, angle, addKick);
-
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment3 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment4 = new Fragment(pos, velocity, angle, addKick);
+		Fragment* fragment1 = new Fragment(pos, velocity, angle);
+		Fragment* fragment2 = new Fragment(pos, velocity, angle);
+		Fragment* fragment3 = new Fragment(pos, velocity, angle);
+		Fragment* fragment4 = new Fragment(pos, velocity, angle);
 
 		satellites->push_back(fragment1);
 		satellites->push_back(fragment2);

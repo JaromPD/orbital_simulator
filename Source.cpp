@@ -30,10 +30,10 @@ class Simulation {
 public:
     Simulation(Position ptUpperRight) {
         // Update the ships values.
-        Angle ang(0);
-        Velocity vel(-3100, ang);
-        Position pos(21082000, 36515095.125);
-        ship = new Ship(vel, pos, ang, 0);
+        Position pos;
+        pos.setPixelsX(300);
+        pos.setPixelsY(300);
+        ship = new Ship(Velocity(), pos, Angle(), 0);
 
         // Create Sputnik!
         Sputnik* sputnik = new Sputnik();

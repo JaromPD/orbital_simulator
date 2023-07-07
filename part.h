@@ -5,6 +5,7 @@ class Part :
 {
 public:
     Part() {};
-    Part(Position pos, Velocity velocity, Angle angle, bool addKick);
+    Part(Position pos, Velocity velocity, Angle angle);
+    void addKick() { this->velocity.add(Velocity(random(5000, 9000), angle)); };
 };
 

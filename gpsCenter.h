@@ -9,9 +9,9 @@ class GPSCenter :
 {
 public:
 
-	GPSCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+	GPSCenter(Position pos, Velocity velocity, Angle angle) : Part(pos, velocity, angle)
 	{
-		this->radius = 7;
+		this->radius = 1;//7;
 	};
 
     void draw(ogstream* gout) {
@@ -22,9 +22,9 @@ public:
 	{
 		bool addKick = true;
 
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment3 = new Fragment(pos, velocity, angle, addKick);
+		Fragment* fragment1 = new Fragment(pos, velocity, angle);
+		Fragment* fragment2 = new Fragment(pos, velocity, angle);
+		Fragment* fragment3 = new Fragment(pos, velocity, angle);
 
 
 		satellites->push_back(fragment1);

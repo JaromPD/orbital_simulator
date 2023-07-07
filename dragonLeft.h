@@ -6,7 +6,7 @@ class DragonLeft :
 {
 public:
 
-	DragonLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+	DragonLeft(Position pos, Velocity velocity, Angle angle) : Part(pos, velocity, angle)
 	{
 		this->radius = 6;
 	};
@@ -19,8 +19,8 @@ public:
 	{
 		bool addKick = true;
 
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
+		Fragment* fragment1 = new Fragment(pos, velocity, angle);
+		Fragment* fragment2 = new Fragment(pos, velocity, angle);
 
 		satellites->push_back(fragment1);
 		satellites->push_back(fragment2);

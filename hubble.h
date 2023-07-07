@@ -25,10 +25,10 @@ public:
 	{
 		bool addKick = true;
 
-		HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, angle, addKick);
-		HubbleComputer* part2 = new HubbleComputer(pos, velocity, angle, addKick);
-		HubbleLeft* part3 = new HubbleLeft(pos, velocity, angle, addKick);
-		HubbleRight* part4 = new HubbleRight(pos, velocity, angle, addKick);
+		HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, angle);
+		HubbleComputer* part2 = new HubbleComputer(pos, velocity, angle);
+		HubbleLeft* part3 = new HubbleLeft(pos, velocity, angle);
+		HubbleRight* part4 = new HubbleRight(pos, velocity, angle);
 
 
 		satellites->push_back(part1);

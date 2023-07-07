@@ -20,12 +20,10 @@ public:
 
 	void destroy(list<Satellite*>* satellites)
 	{
-		bool addKick = true;
-
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		StarLinkBody* body = new StarLinkBody(pos, velocity, angle, addKick);
-		StarLinkArray* array = new StarLinkArray(pos, velocity, angle, addKick);
+		Fragment* fragment1 = new Fragment(pos, velocity, angle);
+		Fragment* fragment2 = new Fragment(pos, velocity, angle);
+		StarLinkBody* body = new StarLinkBody(pos, velocity, angle);
+		StarLinkArray* array = new StarLinkArray(pos, velocity, angle);
 
 		satellites->push_back(fragment1);
 		satellites->push_back(fragment2);
