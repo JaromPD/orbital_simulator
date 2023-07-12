@@ -7,26 +7,11 @@
 class Projectile : public Satellite
 {
 public:
-	Projectile(Velocity vel, Position pos, Angle ang) : Satellite()
-	{
-		this->pos = pos;
-		this->velocity = vel;
-		this->angle = ang;
-		radius = 1;
-	}
-	void draw(ogstream* gout)
-	{
-		gout->drawProjectile(pos);
+	Projectile(Velocity vel, Position pos, Angle ang);
 
-		framesToLive--;
-		if (framesToLive <= 0)
-		{
-			kill();
-		}
-
-	}
+	void draw(ogstream* gout);
 
 private:
-	int framesToLive = 70;
+	int framesToLive;
 };
 

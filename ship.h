@@ -1,5 +1,4 @@
 #pragma once
-#include "whole.h"
 #include "uiDraw.h"
 #include "position.h"
 #include "velocity.h"
@@ -7,7 +6,7 @@
 #include "projectile.h"
 
 class Ship :
-    public Whole
+    public Satellite
 {
 public:
 	friend class TestShip;
