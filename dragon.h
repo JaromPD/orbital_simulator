@@ -25,11 +25,13 @@ public:
 	{
 		bool addKick = true;
 
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		DragonCenter* dragonCenter = new DragonCenter(pos, velocity, angle, addKick);
-		DragonLeft* dragonLeft = new DragonLeft(pos, velocity, angle, addKick);
-		DragonRight* dragonRight = new DragonRight(pos, velocity, angle, addKick);
+		float offset = (2 * M_PI) / 5;
+
+		Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
+		Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
+		DragonCenter* dragonCenter = new DragonCenter(pos, velocity, Angle(offset * 2), addKick);
+		DragonLeft* dragonLeft = new DragonLeft(pos, velocity, Angle(offset * 3), addKick);
+		DragonRight* dragonRight = new DragonRight(pos, velocity, Angle(offset * 4), addKick);
 
 
 		satellites->push_back(fragment1);

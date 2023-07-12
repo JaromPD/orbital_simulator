@@ -22,11 +22,13 @@ public:
 	{
 		bool addKick = true;
 
-		Fragment* fragment1 = new Fragment(pos, velocity, angle, addKick);
-		Fragment* fragment2 = new Fragment(pos, velocity, angle, addKick);
-		GPSCenter* gpsCenter = new GPSCenter(pos, velocity, angle, addKick);
-		GPSLeft* gpsLeft = new GPSLeft(pos, velocity, angle, addKick);
-		GPSRight* gpsRight = new GPSRight(pos, velocity, angle, addKick);
+		float offset = (2 * M_PI) / 5;
+
+		Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+		Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset), addKick);
+		GPSCenter* gpsCenter = new GPSCenter(pos, velocity, Angle(offset * 2), addKick);
+		GPSLeft* gpsLeft = new GPSLeft(pos, velocity, Angle(offset * 3), addKick);
+		GPSRight* gpsRight = new GPSRight(pos, velocity, Angle(offset * 4), addKick);
 
 		satellites->push_back(fragment1);
 		satellites->push_back(fragment2);

@@ -1,3 +1,14 @@
+/**************************************
+ * ORBIT SIMULATOR
+ * This program is designed to simulate
+ * the orbits of satellites around the
+ * earth.
+ * 
+ * Author: Jarom Diaz
+ * Date: 7/08/2023
+ * Last Edited: 7/08/2023 09:51
+ *************************************/
+
 #define _USE_MATH_DEFINES
 double SECONDS_PER_DAY = 86400;
 int FRAME_RATE = 30;

@@ -24,11 +24,12 @@ public:
 	void destroy(list<Satellite*>* satellites)
 	{
 		bool addKick = true;
+		float offset = (2 * M_PI) / 4;
 
-		HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, angle, addKick);
-		HubbleComputer* part2 = new HubbleComputer(pos, velocity, angle, addKick);
-		HubbleLeft* part3 = new HubbleLeft(pos, velocity, angle, addKick);
-		HubbleRight* part4 = new HubbleRight(pos, velocity, angle, addKick);
+		HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, Angle(offset * 0), addKick);
+		HubbleComputer* part2 = new HubbleComputer(pos, velocity, Angle(offset * 1), addKick);
+		HubbleLeft* part3 = new HubbleLeft(pos, velocity, Angle(offset * 2), addKick);
+		HubbleRight* part4 = new HubbleRight(pos, velocity, Angle(offset * 3), addKick);
 
 
 		satellites->push_back(part1);
