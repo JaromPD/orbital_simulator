@@ -3,6 +3,7 @@
 #include "velocity.h"
 #include "position.h"
 #include "angle.h"
+#include "part.h"
 #include "uiDraw.h"
 #include <math.h>
 #include <cmath>
@@ -36,7 +37,7 @@ public:
 
 	// Virtual functions
 	virtual void draw(ogstream* gout) {};
-	virtual void destroy(list<Satellite*>* satellites); // Takes satellites as param
+	void destroy(list<Satellite*>* satellites); // Takes satellites as param
 	void move(float time);
 	virtual void input();
 	bool isColliding(Satellite* other);
@@ -45,6 +46,7 @@ protected:
 	float getGravity(Position pos);
 	void updateVelocity(float aGravity, float time);
 	void updatePosition(float time);
+	virtual list<Part*>* getDebris();
 
 	Velocity velocity;
 	Position pos;

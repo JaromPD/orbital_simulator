@@ -11,7 +11,11 @@ void Satellite::kill()
 
 void Satellite::destroy(list<Satellite*>* satellites)
 {
-
+	list<Part*>* debris = getDebris();
+	for (list<Part*>::iterator it = debris->begin(); it != debris->end(); it++)
+	{
+		satellites->push_back(*it);
+	}
 }
 
 float Satellite::getGravity(Position pos)
@@ -95,4 +99,10 @@ bool Satellite::isCollidingEarth()
 	{
 		return false;
 	}
+}
+
+list<Part*>* Satellite::getDebris()
+{
+	list<Part*>* debris;
+	return debris;
 }
