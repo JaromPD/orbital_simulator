@@ -99,9 +99,6 @@
     <ClCompile Include="hubbleComputer.cpp">
       <Filter>Parts\HubbleParts</Filter>
     </ClCompile>
-    <ClCompile Include="hubble.cpp">
-      <Filter>Parts\HubbleParts</Filter>
-    </ClCompile>
     <ClCompile Include="hubbleRight.cpp">
       <Filter>Parts\HubbleParts</Filter>
     </ClCompile>
@@ -128,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="starLinkArray.cpp">
       <Filter>Parts\StarLinkParts</Filter>
+    </ClCompile>
+    <ClCompile Include="hubble.cpp">
+      <Filter>Satellites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
