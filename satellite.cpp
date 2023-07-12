@@ -1,4 +1,5 @@
 #include "satellite.h"
+#include "part.h"
 #include <cmath>
 #define EARTH_RADIUS 6378000
 #define EARTH_GRAVITY -9.80665
@@ -9,9 +10,19 @@ void Satellite::kill()
 	dead = true;
 }
 
+
 void Satellite::destroy(list<Satellite*>* satellites)
 {
+	list<Part*> debris = getDebris();
+	float offset = (2 * M_PI) / debris.size();
+	int partNum = 0;
 
+	for (auto& part : debris)
+	{
+		part->setRadians(offset * partNum);
+		satellites->push_back(part);
+		partNum++;
+	}
 }
 
 float Satellite::getGravity(Position pos)
@@ -95,4 +106,10 @@ bool Satellite::isCollidingEarth()
 	{
 		return false;
 	}
+}
+
+list<Part*> Satellite::getDebris() // To Do: Make this pure virtual?
+{
+	list<Part*> debris;
+	return debris;
 }

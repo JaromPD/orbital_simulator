@@ -10,6 +10,7 @@
 using namespace std;
 
 class TestShip;
+class Part;
 
 class Satellite
 {
@@ -44,6 +45,7 @@ protected:
 	float getGravity(Position pos);
 	void updateVelocity(float aGravity, float time);
 	void updatePosition(float time);
+	virtual list<Part*> getDebris();
 
 	Velocity velocity;
 	Position pos;

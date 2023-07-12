@@ -10,8 +10,9 @@ void GPS::draw(ogstream* gout)
 	gout->drawGPS(pos, 0);
 }
 
-void GPS::destroy(list<Satellite*>* satellites)
+list<Part*> GPS::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
 	float offset = (2 * M_PI) / 5;
 
@@ -21,9 +22,12 @@ void GPS::destroy(list<Satellite*>* satellites)
 	GPSLeft* gpsLeft = new GPSLeft(pos, velocity, Angle(offset * 3), addKick);
 	GPSRight* gpsRight = new GPSRight(pos, velocity, Angle(offset * 4), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
-	satellites->push_back(gpsCenter);
-	satellites->push_back(gpsLeft);
-	satellites->push_back(gpsRight);
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+	debris.push_back(gpsCenter);
+	debris.push_back(gpsLeft);
+	debris.push_back(gpsRight);
+
+	return debris;
 }
+

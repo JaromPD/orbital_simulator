@@ -9,6 +9,7 @@ class GPS : public Satellite
 public:
 	GPS(Position pos, Velocity vel);
 	void draw(ogstream* gout);
-	void destroy(list<Satellite*>* satellites);
+protected:
+	list<Part*> getDebris();
 };
 
