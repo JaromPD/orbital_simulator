@@ -4,7 +4,7 @@ Part::Part(Position pos, Velocity velocity, Angle angle, bool addKick) // To Do:
 	this->velocity = velocity;
 	this->angle = angle;
 	this->pos = pos;
-	this->angularVelocity = random(-.5, .5); // To Do: Get this to add the spin.
+	this->angularVelocity = random(-.25, .25); // To Do: Get this to add the spin.
 }
 
 void Part::setRadians(float radians)

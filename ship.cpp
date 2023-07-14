@@ -15,15 +15,18 @@ Ship::Ship(Velocity vel, Position pos, Angle ang, float angular)
 	this->thrust = false;
 }
 
-void Ship::destroy(list<Satellite*>* satellites)
+list<Part*> Ship::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 2;
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+
+	return debris;
 }
 
 void Ship::move(float time)
