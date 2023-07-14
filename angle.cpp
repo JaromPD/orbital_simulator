@@ -21,8 +21,10 @@ float Angle::convertRadiansToDegrees() const
 
 void Angle::setRadians(float radians)
 { 
+	cout << "    Setting to: " << radians << endl;
 	this->radians = radians;
 	normalizeRadians();
+	cout << "    Set to: " << this->radians << endl;
 }
 
 void Angle::setDegrees(float degrees)

@@ -5,7 +5,7 @@ GPSRight::GPSRight(Position pos, Velocity velocity, Angle angle, bool addKick) :
 };
 
 void GPSRight::draw(ogstream* gout) {
-	gout->drawGPSRight(pos, 0);
+	gout->drawGPSRight(pos, this->angle.getRadians());
 };
 
 void GPSRight::destroy(list<Satellite*>* satellites)

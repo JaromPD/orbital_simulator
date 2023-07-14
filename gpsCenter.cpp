@@ -5,7 +5,7 @@ GPSCenter::GPSCenter(Position pos, Velocity velocity, Angle angle, bool addKick)
 };
 
 void GPSCenter::draw(ogstream* gout) {
-	gout->drawGPSCenter(pos, 0);
+	gout->drawGPSCenter(pos, this->angle.getRadians());
 };
 
 void GPSCenter::destroy(list<Satellite*>* satellites)

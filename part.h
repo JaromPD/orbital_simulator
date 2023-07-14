@@ -7,5 +7,6 @@ public:
     Part() {};
     Part(Position pos, Velocity velocity, Angle angle, bool addKick);
     void setRadians(float radians);
+    void kick(float kickAngle);
 };
 

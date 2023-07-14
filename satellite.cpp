@@ -19,7 +19,8 @@ void Satellite::destroy(list<Satellite*>* satellites)
 
 	for (auto& part : debris)
 	{
-		part->setRadians(offset * partNum);
+		//part->setRadians(offset * partNum);
+		part->kick(offset*partNum);
 		satellites->push_back(part);
 		partNum++;
 	}
