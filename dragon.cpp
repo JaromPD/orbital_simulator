@@ -14,13 +14,12 @@ void Dragon::draw(ogstream* gout)
 list<Part*> Dragon::getDebris()
 {
 	list<Part*> debris;
-	bool addKick = true;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
-	DragonCenter* dragonCenter = new DragonCenter(pos, velocity, Angle(0), addKick);
-	DragonLeft* dragonLeft = new DragonLeft(pos, velocity, Angle(0), addKick);
-	DragonRight* dragonRight = new DragonRight(pos, velocity, Angle(0), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0));
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0));
+	DragonCenter* dragonCenter = new DragonCenter(pos, velocity, Angle(0));
+	DragonLeft* dragonLeft = new DragonLeft(pos, velocity, Angle(0));
+	DragonRight* dragonRight = new DragonRight(pos, velocity, Angle(0));
 
 	debris.push_back(fragment1);
 	debris.push_back(fragment2);

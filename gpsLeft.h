@@ -5,7 +5,7 @@ class GPSLeft :
     public Part
 {
 public:
-	GPSLeft(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
+	GPSLeft(const Position& pos, const Velocity& velocity, const Angle& angle);
 	void draw(ogstream* gout);
 protected:
 	list<Part*> getDebris();

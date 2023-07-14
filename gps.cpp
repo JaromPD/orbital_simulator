@@ -15,11 +15,11 @@ list<Part*> GPS::getDebris()
 	list<Part*> debris;
 	bool addKick = true;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
-	GPSCenter* gpsCenter = new GPSCenter(pos, velocity, Angle(0), addKick);
-	GPSLeft* gpsLeft = new GPSLeft(pos, velocity, Angle(0), addKick);
-	GPSRight* gpsRight = new GPSRight(pos, velocity, Angle(0), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0));
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0));
+	GPSCenter* gpsCenter = new GPSCenter(pos, velocity, Angle(0));
+	GPSLeft* gpsLeft = new GPSLeft(pos, velocity, Angle(0));
+	GPSRight* gpsRight = new GPSRight(pos, velocity, Angle(0));
 
 	debris.push_back(fragment1);
 	debris.push_back(fragment2);

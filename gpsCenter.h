@@ -8,7 +8,7 @@ class GPSCenter :
     public Part
 {
 public:
-	GPSCenter(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
+	GPSCenter(const Position& pos, const Velocity& velocity, const Angle& angle);
 	void draw(ogstream* gout);
 protected:
 	list<Part*> getDebris();

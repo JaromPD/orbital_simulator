@@ -5,7 +5,7 @@ class HubbleLeft :
     public Part
 {
 public:
-	HubbleLeft(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
+	HubbleLeft(const Position& pos, const Velocity& velocity, const Angle& angle);
 	void draw(ogstream* gout);
 protected:
 	list<Part*> getDebris();
