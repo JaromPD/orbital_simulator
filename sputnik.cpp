@@ -10,7 +10,7 @@ Sputnik::Sputnik() : Satellite()
 
 void Sputnik::draw(ogstream* gout)
 {
-	gout->drawSputnik(pos, 0);
+	gout->drawSputnik(pos, getDirection().getRadians());
 }
 
 list<Part*> Sputnik::getDebris()

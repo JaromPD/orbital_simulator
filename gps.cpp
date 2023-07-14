@@ -7,7 +7,7 @@ GPS::GPS(const Position& pos, const Velocity& vel) : Satellite()
 }
 void GPS::draw(ogstream* gout)
 {
-	gout->drawGPS(pos, 0);
+	gout->drawGPS(pos, (getDirectionGravity().getRadians() + (M_PI / 2)));
 }
 
 list<Part*> GPS::getDebris()

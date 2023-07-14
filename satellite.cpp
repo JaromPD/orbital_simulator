@@ -35,6 +35,16 @@ float Satellite::getGravity(const Position& pos)
 	return gravity;
 }
 
+Angle Satellite::getDirection() const
+{
+	return Angle(atan2(velocity.getDx(), velocity.getDy()));
+}
+
+Angle Satellite::getDirectionGravity() const
+{
+	return Angle(atan2(pos.getMetersX(), pos.getMetersY()));
+}
+
 void Satellite::updateVelocity(float aGravity, float time)
 {
 	float newDx;

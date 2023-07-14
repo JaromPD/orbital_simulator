@@ -43,6 +43,8 @@ public:
 	bool isCollidingEarth();
 protected:
 	float getGravity(const Position& pos);
+	Angle getDirection() const;
+	Angle getDirectionGravity() const;
 	void updateVelocity(float aGravity, float time);
 	void updatePosition(float time);
 	virtual list<Part*> getDebris();

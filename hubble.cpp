@@ -9,7 +9,7 @@ Hubble::Hubble() : Satellite()
 
 void Hubble::draw(ogstream* gout)
 {
-	gout->drawHubble(pos, 0);
+	gout->drawHubble(pos, (getDirectionGravity().getRadians() / (-M_PI)));
 }
 
 list<Part*> Hubble::getDebris()

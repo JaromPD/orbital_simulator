@@ -7,7 +7,7 @@ StarLink::StarLink() : Satellite()
 }
 void StarLink::draw(ogstream* gout)
 {
-	gout->drawStarlink(pos, 0);
+	gout->drawStarlink(pos, getDirection().getRadians());
 }
 
 list<Part*> StarLink::getDebris()

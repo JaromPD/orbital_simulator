@@ -8,7 +8,7 @@ Dragon::Dragon() : Satellite()
 
 void Dragon::draw(ogstream* gout)
 {
-	gout->drawCrewDragon(pos, 0);
+	gout->drawCrewDragon(pos, getDirection().getRadians());
 }
 
 list<Part*> Dragon::getDebris()
