@@ -14,7 +14,6 @@ list<Part*> GPS::getDebris()
 {
 	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 5;
 
 	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
 	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);

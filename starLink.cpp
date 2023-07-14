@@ -10,18 +10,20 @@ void StarLink::draw(ogstream* gout)
 	gout->drawStarlink(pos, 0);
 }
 
-void StarLink::destroy(list<Satellite*>* satellites)
+list<Part*> StarLink::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 5;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
-	StarLinkBody* body = new StarLinkBody(pos, velocity, Angle(offset * 2), addKick);
-	StarLinkArray* array = new StarLinkArray(pos, velocity, Angle(offset * 3), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+	StarLinkBody* body = new StarLinkBody(pos, velocity, Angle(0), addKick);
+	StarLinkArray* array = new StarLinkArray(pos, velocity, Angle(0), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
-	satellites->push_back(body);
-	satellites->push_back(array);
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+	debris.push_back(body);
+	debris.push_back(array);
+
+	return debris;
 }

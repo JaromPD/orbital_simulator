@@ -5,21 +5,23 @@ DragonCenter::DragonCenter(Position pos, Velocity velocity, Angle angle, bool ad
 };
 
 void DragonCenter::draw(ogstream* gout) {
-	gout->drawCrewDragonCenter(pos, 0);
+	gout->drawCrewDragonCenter(pos, this->angle.getRadians());
 };
 
-void DragonCenter::destroy(list<Satellite*>* satellites)
+list<Part*> DragonCenter::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 4;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
-	Fragment* fragment3 = new Fragment(pos, velocity, Angle(offset * 2), addKick);
-	Fragment* fragment4 = new Fragment(pos, velocity, Angle(offset * 3), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment3 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment4 = new Fragment(pos, velocity, Angle(0), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
-	satellites->push_back(fragment3);
-	satellites->push_back(fragment4);
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+	debris.push_back(fragment3);
+	debris.push_back(fragment4);
+
+	return debris;
 }

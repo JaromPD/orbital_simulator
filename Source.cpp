@@ -42,8 +42,8 @@ public:
     Simulation(Position ptUpperRight) {
         // Update the ships values.
         Angle ang(0);
-        Velocity vel(-3100, ang);
-        Position pos(21082000, 36515095.125);
+        Velocity vel(0, ang);
+        Position pos(36515095, 36515095);
         ship = new Ship(vel, pos, ang, 0);
 
         // Create Sputnik!

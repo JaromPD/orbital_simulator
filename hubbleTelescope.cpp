@@ -6,19 +6,21 @@ HubbleTelescope::HubbleTelescope(Position pos, Velocity velocity, Angle angle, b
 };
 
 void HubbleTelescope::draw(ogstream* gout) {
-	gout->drawHubbleTelescope(pos, 0);
+	gout->drawHubbleTelescope(pos, this->angle.getRadians());
 };
 
-void HubbleTelescope::destroy(list<Satellite*>* satellites)
+list<Part*> HubbleTelescope::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 2;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
-	Fragment* fragment3 = new Fragment(pos, velocity, Angle(offset * 2), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment3 = new Fragment(pos, velocity, Angle(0), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
-	satellites->push_back(fragment3);
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+	debris.push_back(fragment3);
+
+	return debris;
 }

@@ -51,16 +51,7 @@
     <ClCompile Include="angle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testShip.h">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
     <ClCompile Include="projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fragment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
@@ -129,6 +120,9 @@
     <ClCompile Include="hubble.cpp">
       <Filter>Satellites</Filter>
     </ClCompile>
+    <ClCompile Include="fragment.cpp">
+      <Filter>Parts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="uiDraw.h">
@@ -146,19 +140,7 @@
     <ClInclude Include="angle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="testPosition.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
     <ClInclude Include="projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testAngle.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
-    <ClInclude Include="fragment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="star.h">
@@ -223,6 +205,9 @@
     </ClInclude>
     <ClInclude Include="starLinkArray.h">
       <Filter>Parts\StarLinkParts</Filter>
+    </ClInclude>
+    <ClInclude Include="fragment.h">
+      <Filter>Parts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

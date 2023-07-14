@@ -11,6 +11,7 @@ class Dragon :
 public:
 	Dragon();
 	void draw(ogstream* gout);
-	void destroy(list<Satellite*>* satellites);
+protected:
+	list<Part*> getDebris();
 };
 

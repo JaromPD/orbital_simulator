@@ -11,20 +11,22 @@ void Dragon::draw(ogstream* gout)
 	gout->drawCrewDragon(pos, 0);
 }
 
-void Dragon::destroy(list<Satellite*>* satellites)
+list<Part*> Dragon::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 5;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(offset * 0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(offset * 1), addKick);
-	DragonCenter* dragonCenter = new DragonCenter(pos, velocity, Angle(offset * 2), addKick);
-	DragonLeft* dragonLeft = new DragonLeft(pos, velocity, Angle(offset * 3), addKick);
-	DragonRight* dragonRight = new DragonRight(pos, velocity, Angle(offset * 4), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+	DragonCenter* dragonCenter = new DragonCenter(pos, velocity, Angle(0), addKick);
+	DragonLeft* dragonLeft = new DragonLeft(pos, velocity, Angle(0), addKick);
+	DragonRight* dragonRight = new DragonRight(pos, velocity, Angle(0), addKick);
 
-	satellites->push_back(fragment1);
-	satellites->push_back(fragment2);
-	satellites->push_back(dragonCenter);
-	satellites->push_back(dragonLeft);
-	satellites->push_back(dragonRight);
+	debris.push_back(fragment1);
+	debris.push_back(fragment2);
+	debris.push_back(dragonCenter);
+	debris.push_back(dragonLeft);
+	debris.push_back(dragonRight);
+
+	return debris;
 }

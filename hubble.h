@@ -11,6 +11,7 @@ class Hubble :
 public:
 	Hubble();
 	void draw(ogstream* gout);
-	void destroy(list<Satellite*>* satellites);
+protected:
+	list<Part*> getDebris();
 };
 

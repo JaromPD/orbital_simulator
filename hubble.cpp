@@ -12,19 +12,20 @@ void Hubble::draw(ogstream* gout)
 	gout->drawHubble(pos, 0);
 }
 
-void Hubble::destroy(list<Satellite*>* satellites)
+list<Part*> Hubble::getDebris()
 {
+	list<Part*> debris;
 	bool addKick = true;
-	float offset = (2 * M_PI) / 4;
 
-	HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, Angle(offset * 0), addKick);
-	HubbleComputer* part2 = new HubbleComputer(pos, velocity, Angle(offset * 1), addKick);
-	HubbleLeft* part3 = new HubbleLeft(pos, velocity, Angle(offset * 2), addKick);
-	HubbleRight* part4 = new HubbleRight(pos, velocity, Angle(offset * 3), addKick);
+	HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, Angle(0), addKick);
+	HubbleComputer* part2 = new HubbleComputer(pos, velocity, Angle(0), addKick);
+	HubbleLeft* part3 = new HubbleLeft(pos, velocity, Angle(0), addKick);
+	HubbleRight* part4 = new HubbleRight(pos, velocity, Angle(0), addKick);
 
-	satellites->push_back(part1);
-	satellites->push_back(part2);
-	satellites->push_back(part3);
-	satellites->push_back(part4);
+	debris.push_back(part1);
+	debris.push_back(part2);
+	debris.push_back(part3);
+	debris.push_back(part4);
 
+	return debris;
 }
