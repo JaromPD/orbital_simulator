@@ -37,15 +37,13 @@ void Angle::setDxDy(float dx, float dy)
 	normalizeRadians();
 }
 
-float Angle::getDegrees()
+float Angle::getDegrees() const
 {
-	normalizeRadians(); 
 	return(convertRadiansToDegrees());
 }
 
-float Angle::getRadians()
+float Angle::getRadians() const
 {
-	normalizeRadians();
 	return(this->radians);
 }
 

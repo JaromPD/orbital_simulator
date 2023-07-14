@@ -1,5 +1,5 @@
 #include "part.h"
-Part::Part(Position pos, Velocity velocity, Angle angle, bool addKick) // To Do: It's gonna suck but the addKick has got to go. It has no use anymore.
+Part::Part(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) // To Do: It's gonna suck but the addKick has got to go. It has no use anymore.
 {
 	this->velocity = velocity;
 	this->angle = angle;

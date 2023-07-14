@@ -1,5 +1,5 @@
 #include "hubbleLeft.h"
-HubbleLeft::HubbleLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+HubbleLeft::HubbleLeft(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 8;
 };

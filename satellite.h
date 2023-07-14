@@ -22,7 +22,7 @@ public:
 		// Stub
 	}
 
-	Satellite(Velocity vel, Position pos, Angle angle)
+	Satellite(const Velocity& vel, const Position& pos, const Angle& angle)
 	{
 		this->velocity = vel;
 		this->pos = pos;
@@ -42,7 +42,7 @@ public:
 	bool isColliding(Satellite* other);
 	bool isCollidingEarth();
 protected:
-	float getGravity(Position pos);
+	float getGravity(const Position& pos);
 	void updateVelocity(float aGravity, float time);
 	void updatePosition(float time);
 	virtual list<Part*> getDebris();

@@ -5,7 +5,7 @@ class StarLinkBody :
     public Part
 {
 public:
-	StarLinkBody(Position pos, Velocity velocity, Angle angle, bool addKick);
+	StarLinkBody(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
 	void draw(ogstream* gout);
 	void destroy(list<Satellite*>* satellites);
 };

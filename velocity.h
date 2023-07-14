@@ -16,7 +16,7 @@ public:
 		setDy(dy);
 	}
 
-	Velocity(float vel, Angle ang);
+	Velocity(float vel, const Angle& ang);
 	Velocity(float dx, float dy);
 	
 	void assign(float velocity);

@@ -1,5 +1,5 @@
 #include "projectile.h"
-Projectile::Projectile(Velocity vel, Position pos, Angle ang) : Satellite()
+Projectile::Projectile(const Velocity& vel, const Position& pos, const Angle& ang) : Satellite()
 {
 	this->pos = pos;
 	this->velocity = vel;

@@ -1,5 +1,5 @@
 #include "starLinkBody.h"
-StarLinkBody::StarLinkBody(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+StarLinkBody::StarLinkBody(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 2;
 };

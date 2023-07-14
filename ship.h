@@ -21,7 +21,7 @@ public:
 		this->radius = 5.00;
 		this->thrust = false;
 	};
-	Ship(Velocity vel, Position pos, Angle ang, float angular);
+	Ship(const Velocity& vel, const Position& pos, const Angle& ang, float angular);
 	void draw(ogstream* gout)
 	{
 		gout->drawShip(pos, angle.getRadians(), thrust);

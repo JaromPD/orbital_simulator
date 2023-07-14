@@ -1,5 +1,5 @@
 #include "dragonLeft.h"
-DragonLeft::DragonLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+DragonLeft::DragonLeft(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 6;
 };

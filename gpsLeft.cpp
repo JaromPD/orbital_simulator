@@ -1,5 +1,5 @@
 #include "gpsLeft.h"
-GPSLeft::GPSLeft(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+GPSLeft::GPSLeft(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 8;
 };

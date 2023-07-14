@@ -5,7 +5,7 @@ class Part :
 {
 public:
     Part() {};
-    Part(Position pos, Velocity velocity, Angle angle, bool addKick);
+    Part(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
     void setRadians(float radians);
     void kick(float kickAngle);
 };

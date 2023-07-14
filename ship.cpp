@@ -3,7 +3,7 @@
 #include <math.h>
 #define _USING_MATH_DEFINES
 
-Ship::Ship(Velocity vel, Position pos, Angle ang, float angular)
+Ship::Ship(const Velocity& vel, const Position& pos, const Angle& ang, float angular)
 {
 	this->velocity = vel;
 	this->pos = pos;

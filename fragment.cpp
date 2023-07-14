@@ -1,7 +1,7 @@
 #include "fragment.h"
 #include "uiDraw.h"
 
-Fragment::Fragment(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+Fragment::Fragment(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	framesToLive = random(50, 100);
 }

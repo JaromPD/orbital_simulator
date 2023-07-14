@@ -21,8 +21,8 @@ public:
 	void setLeft() { this->radians = M_PI; };
 	void setRight() { this->radians = 0; };
 	void rotate(float radians);
-	float getDegrees();
-	float getRadians();
+	float getDegrees() const;
+	float getRadians() const;
 	float getDx() const { return 0.00; };
 	float getDy() const { return 0.00; };
 private:

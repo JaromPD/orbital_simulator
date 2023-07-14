@@ -26,7 +26,7 @@ void Satellite::destroy(list<Satellite*>* satellites)
 	}
 }
 
-float Satellite::getGravity(Position pos)
+float Satellite::getGravity(const Position& pos)
 {
 	// First get the height from earth.
 	float height = sqrt((pos.getMetersX() * pos.getMetersX()) + (pos.getMetersY() * pos.getMetersY())) - EARTH_RADIUS;

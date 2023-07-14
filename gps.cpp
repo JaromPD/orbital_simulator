@@ -1,5 +1,5 @@
 #include "gps.h"
-GPS::GPS(Position pos, Velocity vel) : Satellite()
+GPS::GPS(const Position& pos, const Velocity& vel) : Satellite()
 {
 	this->pos = pos;
 	this->velocity = vel;

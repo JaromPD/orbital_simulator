@@ -7,7 +7,7 @@
 class Projectile : public Satellite
 {
 public:
-	Projectile(Velocity vel, Position pos, Angle ang);
+	Projectile(const Velocity& vel, const Position& pos, const Angle& ang);
 
 	void draw(ogstream* gout);
 

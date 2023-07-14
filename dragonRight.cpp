@@ -1,5 +1,5 @@
 #include "dragonRight.h"
-DragonRight::DragonRight(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+DragonRight::DragonRight(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 6;
 };

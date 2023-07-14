@@ -5,7 +5,7 @@ class Fragment :
 {
 public:
     Fragment() {};
-	Fragment(Position pos, Velocity velocity, Angle angle, bool addKick);
+	Fragment(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick);
 
     void draw(ogstream* gout);
 

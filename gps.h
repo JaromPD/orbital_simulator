@@ -7,7 +7,7 @@
 class GPS : public Satellite
 {
 public:
-	GPS(Position pos, Velocity vel);
+	GPS(const Position& pos, const Velocity& vel);
 	void draw(ogstream* gout);
 protected:
 	list<Part*> getDebris();

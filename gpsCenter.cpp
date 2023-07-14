@@ -1,5 +1,5 @@
 #include "gpsCenter.h"
-GPSCenter::GPSCenter(Position pos, Velocity velocity, Angle angle, bool addKick) : Part(pos, velocity, angle, addKick)
+GPSCenter::GPSCenter(const Position& pos, const Velocity& velocity, const Angle& angle, bool addKick) : Part(pos, velocity, angle, addKick)
 {
 	this->radius = 7;
 };
