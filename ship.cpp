@@ -20,8 +20,8 @@ list<Part*> Ship::getDebris()
 	list<Part*> debris;
 	bool addKick = true;
 
-	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0), addKick);
-	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0), addKick);
+	Fragment* fragment1 = new Fragment(pos, velocity, Angle(0));
+	Fragment* fragment2 = new Fragment(pos, velocity, Angle(0));
 
 	debris.push_back(fragment1);
 	debris.push_back(fragment2);

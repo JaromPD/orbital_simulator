@@ -17,10 +17,10 @@ list<Part*> Hubble::getDebris()
 	list<Part*> debris;
 	bool addKick = true;
 
-	HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, Angle(0), addKick);
-	HubbleComputer* part2 = new HubbleComputer(pos, velocity, Angle(0), addKick);
-	HubbleLeft* part3 = new HubbleLeft(pos, velocity, Angle(0), addKick);
-	HubbleRight* part4 = new HubbleRight(pos, velocity, Angle(0), addKick);
+	HubbleTelescope* part1 = new HubbleTelescope(pos, velocity, Angle(0));
+	HubbleComputer* part2 = new HubbleComputer(pos, velocity, Angle(0));
+	HubbleLeft* part3 = new HubbleLeft(pos, velocity, Angle(0));
+	HubbleRight* part4 = new HubbleRight(pos, velocity, Angle(0));
 
 	debris.push_back(part1);
 	debris.push_back(part2);
