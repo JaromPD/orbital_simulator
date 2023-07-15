@@ -37,7 +37,7 @@ public:
 	// Virtual functions
 	virtual void draw(ogstream* gout) {};
 	virtual void destroy(list<Satellite*>* satellites); // Takes satellites as param
-	void move(float time);
+	void move();
 	virtual void input();
 	bool isColliding(Satellite* other);
 	bool isCollidingEarth();

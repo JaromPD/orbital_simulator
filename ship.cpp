@@ -2,6 +2,7 @@
 #include "fragment.h"
 #include <math.h>
 #define _USING_MATH_DEFINES
+#define SECONDS_PER_FRAME 48
 
 Ship::Ship(const Velocity& vel, const Position& pos, const Angle& ang, float angular)
 {
@@ -29,16 +30,16 @@ list<Part*> Ship::getDebris()
 	return debris;
 }
 
-void Ship::move(float time)
+void Ship::move()
 {
 	float aGravity = getGravity(pos);
-	updateVelocity(aGravity, time);
+	updateVelocity(aGravity, SECONDS_PER_FRAME);
 	if (thrust)
 	{
 		Angle thrustAngle = angle.getRadians() - ((3 * M_PI )/ 2);
-		velocity.add(Velocity(2*48, thrustAngle)); // To Do: Figure what speed really needs to be.
+		velocity.add(Velocity(2*SECONDS_PER_FRAME, thrustAngle));
 	}
-	updatePosition(time);
+	updatePosition(SECONDS_PER_FRAME);
 	angle.rotate(this->angularVelocity);
 }
 
@@ -52,7 +53,7 @@ Projectile* Ship::fire()
 
 	Projectile* proj = new Projectile(projVel, projPos, projAngle);
 
-	proj->move(2 * 48); // To Do: Use the time constant rather than hard code.
+	proj->move();
 
 	return proj;
 }

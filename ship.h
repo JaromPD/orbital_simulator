@@ -26,7 +26,7 @@ public:
 	{
 		gout->drawShip(pos, angle.getRadians(), thrust);
 	}
-	void move(float time);
+	void move();
 	void input();
 
 	void rotateLeft() { angle.setRadians(angle.getRadians() - 0.1); };

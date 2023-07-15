@@ -12,7 +12,7 @@
 #define _USE_MATH_DEFINES
 double SECONDS_PER_DAY = 86400;
 int FRAME_RATE = 30;
-double SECONDS_PER_FRAME = 48;
+#define SECONDS_PER_FRAME 48;
 
 #include <cassert>      // for ASSERT
 #include <list>         // for satellite List
@@ -113,14 +113,14 @@ public:
 
         if (ship != nullptr)
         {
-            ship->move(SECONDS_PER_FRAME);
+            ship->move();
         }
         list<Satellite*> deadSats;
 
         // Move the satellites
         for (auto& satellite : satellites) {
 
-            satellite->move(SECONDS_PER_FRAME);
+            satellite->move();
 
             if (satellite->isDead()) {
                 deadSats.push_back(satellite);

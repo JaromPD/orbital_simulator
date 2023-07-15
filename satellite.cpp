@@ -3,6 +3,7 @@
 #include <cmath>
 #define EARTH_RADIUS 6378000
 #define EARTH_GRAVITY -9.80665
+#define SECONDS_PER_FRAME 48
 using namespace std;
 
 void Satellite::kill()
@@ -72,11 +73,11 @@ void Satellite::updatePosition(float time)
 	pos.setMetersY(newY);
 }
 
-void Satellite::move(float time)
+void Satellite::move()
 {
 	float aGravity = getGravity(pos);
-	updateVelocity(aGravity, time);
-	updatePosition(time);
+	updateVelocity(aGravity, SECONDS_PER_FRAME);
+	updatePosition(SECONDS_PER_FRAME);
 	angle.rotate(this->angularVelocity);
 }
 
@@ -91,7 +92,7 @@ bool Satellite::isColliding(Satellite* other)
 	float distance = sqrt((pos.getMetersX() - other->pos.getMetersX()) * (pos.getMetersX() - other->pos.getMetersX()) + 
 		                  (pos.getMetersY() - other->pos.getMetersY()) * (pos.getMetersY() - other->pos.getMetersY()));
 
-	float radii = (radius + other->radius) * 128000; // Since the zoom is 128000, we need to multiply by that to get the correct radius. To Do: Make this scale with zoom.
+	float radii = (radius + other->radius) * 128000;
 
 	if (distance < radii)
 	{
@@ -108,7 +109,7 @@ bool Satellite::isCollidingEarth()
 	float distance = sqrt((pos.getMetersX() - 0) * (pos.getMetersX() - 0) + 
 		                  (pos.getMetersY() - 0) * (pos.getMetersY() - 0));
 
-	float radii = (radius + 128000) + EARTH_RADIUS; // Since the zoom is 128000, we need to multiply by that to get the correct radius. To Do: Make this scale with zoom.
+	float radii = (radius + 128000) + EARTH_RADIUS;
 	if (distance < radii)
 	{
 		return true;
@@ -119,7 +120,7 @@ bool Satellite::isCollidingEarth()
 	}
 }
 
-list<Part*> Satellite::getDebris() // To Do: Make this pure virtual?
+list<Part*> Satellite::getDebris()
 {
 	list<Part*> debris;
 	return debris;
