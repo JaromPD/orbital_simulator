@@ -54,6 +54,10 @@ Projectile* Ship::fire()
 	Projectile* proj = new Projectile(projVel, projPos, projAngle);
 
 	proj->move();
+	proj->move();
+	proj->move();
+	proj->move();
+	proj->move();
 
 	return proj;
 }
