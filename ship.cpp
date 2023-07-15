@@ -55,14 +55,6 @@ Projectile* Ship::fire()
 
 	proj->move();
 	proj->move();
-	proj->move();
-	proj->move();
-	proj->move();
 
 	return proj;
-}
-
-void Ship::input()
-{
-	// Stub
 }
